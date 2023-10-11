@@ -22,6 +22,8 @@ namespace entity
 		void Move(Vector3D displacement) override;
 		void PhysicsUpdate(sf::Time deltaTime) override;
 
+		Particle3D* GetParticle();
+
 	private:
 		sf::CircleShape* renderedObject;
 		Particle3D* particle;

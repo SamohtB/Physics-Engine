@@ -4,6 +4,7 @@ using namespace baseclass;
 
 GameObject::GameObject(std::string name)
 {
+    this->isEnabled = true;
     this->name = name;
 	this->sprite = new sf::Sprite();
     this->sprite->setOrigin(0.0f, 0.0f);
@@ -63,13 +64,13 @@ void GameObject::Draw(sf::RenderWindow* window, sf::RenderStates renderStates)
     std::vector<Component*> rendererComponentList = this->GetComponents(ComponentType::RENDERER);
     Renderer* renderer;
 
-    for(Component* component : rendererComponentList) 
-    {
-        renderer = (Renderer*)component;
-        renderer->AssignTargetWindow(window);
-        renderer->SetRenderStates(renderStates);
-        renderer->Perform();
-    }
+	for (Component* component : rendererComponentList)
+	{
+		renderer = (Renderer*)component;
+		renderer->AssignTargetWindow(window);
+		renderer->SetRenderStates(renderStates);
+		renderer->Perform();
+	}
 }
 
 void GameObject::AttachComponent(Component* component)

@@ -46,3 +46,8 @@ void ParticleObject::PhysicsUpdate(sf::Time deltaTime)
 	this->renderedObject->setPosition(sf::Vector2f(particle->GetPosition().x, particle->GetPosition().y));
 }
 
+Particle3D* ParticleObject::GetParticle()
+{
+	return this->particle;
+}
+

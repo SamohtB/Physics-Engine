@@ -10,6 +10,11 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
     ParticleObject* particle = new ParticleObject("Test Particle");
     GameObjectManager::GetInstance()->AddObject(particle);
 
+    ParticleSystem* particleSystem = new ParticleSystem("Particle System");
+    particleSystem->Initialize();
+
+    particle->AttachComponent(particleSystem);
+
     particle->SetPosition(Vector3D(500.0f, 500.0f, 0.0f));
 }
 

@@ -148,6 +148,7 @@
     <ClCompile Include="GameCore\Game.cpp" />
     <ClCompile Include="GameCore\Managers\GameObjectManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Entities\Components\Script\ParticleSystem.cpp" />
     <ClCompile Include="Physics\Particles\Particle3D.cpp" />
     <ClCompile Include="Physics\Particles\ParticleAnchoredSpring.cpp" />
     <ClCompile Include="Physics\Particles\ParticleBouyancy.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="Entities\ParticleObject.h" />
     <ClInclude Include="GameCore\Game.h" />
     <ClInclude Include="GameCore\Managers\GameObjectManager.h" />
+    <ClInclude Include="Entities\Components\Script\ParticleSystem.h" />
     <ClInclude Include="Physics\Particles\IParticleForceGenerator.h" />
     <ClInclude Include="Physics\Particles\Particle3D.h" />
     <ClInclude Include="Physics\Particles\ParticleAnchoredSpring.h" />

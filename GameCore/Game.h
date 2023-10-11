@@ -12,6 +12,7 @@
 #include "../BaseClasses//Vector3D.h"
 #include "Managers/GameObjectManager.h"
 #include "../Entities/ParticleObject.h"
+#include "../Entities/Components/Script/ParticleSystem.h"
 
 #include "../Physics/Particles/ParticleForceRegistry.h"
 #include "../Physics/Particles/ParticleSpring.h"
