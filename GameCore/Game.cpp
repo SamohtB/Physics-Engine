@@ -6,6 +6,11 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
 {
 	this->renderWindow.setFramerateLimit(FRAME_RATE_LIMIT);
     this->registry = new ParticleForceRegistry();
+
+    ParticleObject* particle = new ParticleObject("Test Particle");
+    GameObjectManager::GetInstance()->AddObject(particle);
+
+    particle->SetPosition(Vector3D(500.0f, 500.0f, 0.0f));
 }
 
 void Game::Run()

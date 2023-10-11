@@ -9,7 +9,9 @@
 #include "SFML/Window.hpp"
 
 #include "../Config/Settings.h"
+#include "../BaseClasses//Vector3D.h"
 #include "Managers/GameObjectManager.h"
+#include "../Entities/ParticleObject.h"
 
 #include "../Physics/Particles/ParticleForceRegistry.h"
 #include "../Physics/Particles/ParticleSpring.h"
@@ -18,6 +20,8 @@
 
 namespace gamecore
 {
+	using namespace baseclass;
+	using namespace entity;
 	using namespace singleton;
 	using namespace physics;
 

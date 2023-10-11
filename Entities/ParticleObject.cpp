@@ -11,7 +11,16 @@ ParticleObject::ParticleObject(std::string name) : GameObject(name)
 
 void ParticleObject::Initialize()
 {
+	this->particle = new Particle3D();
+	this->renderedObject = new sf::CircleShape();
+	this->renderedObject->setRadius(25.0f);
+	this->renderedObject->setFillColor(sf::Color::White);
+	this->renderedObject->setOutlineColor(sf::Color::Black);
 
+	Renderer* renderer = new Renderer(this->name + " Renderer");
+	renderer->AssignDrawable(this->renderedObject);
+
+	this->componentList.push_back(renderer);
 }
 
 Vector3D ParticleObject::GetPosition()
