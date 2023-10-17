@@ -2,15 +2,14 @@
 
 using namespace component;
 
-ParticleSystem::ParticleSystem(std::string name) : Component(name, ComponentType::SCRIPT)
+ParticleSystem::ParticleSystem(std::string name) : Component(name, ComponentType::PHYSICS)
 {
 	// Default Values
-	this->lifeTime = 5.0f;
-	this->ticks = 0.0f;
 	this->maxParticles = 25;
-	this->gravityVector = Vector3D(0.0f, 10.0f, 0.0f);
-	this->dragK1 = 0.5f;
-	this->dragK2 = 1.0f;
+	this->gravityVector = Vector3D(0.0f, 250.0f, 0.0f);
+	this->dragK1 = 0.0f;
+	this->dragK2 = 0.0f;
+	this->particleLifeTime = 2.0f;
 }
 
 ParticleSystem::~ParticleSystem()
@@ -49,18 +48,39 @@ void ParticleSystem::SetMaxParticles(int count)
 
 void ParticleSystem::SetLifeTime(float lifeTime)
 {
-	this->lifeTime = lifeTime;
+	this->particleLifeTime = lifeTime;
 }
 
 void ParticleSystem::CreateParticlePool()
 {
 	ParticleObject* particle; 
+	Vector3D position = this->GetOwner()->GetPosition();
 
 	for(int i = 0; i < maxParticles; i++)
 	{
 		particle = new ParticleObject("Particle_" + std::to_string(i));
+
 		this->pooledParticleObjectList.push_back(particle);
 		GameObjectManager::GetInstance()->AddObject(particle);
-		particle->SetEnabledStatus(false);
+
+		particle->SetPosition(position);
+		particle->SetEnabledStatus(true);
+
+		this->forceRegistry->Add(particle->GetParticle(), this->dragGenerator);
+		this->forceRegistry->Add(particle->GetParticle(), this->gravityGenerator);
+
+		ObjectLifeTime* lifeTimeScript = new ObjectLifeTime(this->GetName() + " Life Time", this->particleLifeTime);
+		particle->AttachComponent(lifeTimeScript);
 	}
+}
+
+void ParticleSystem::SetGravity(Vector3D gravityVector)
+{
+	this->gravityVector = gravityVector;
+}
+
+void ParticleSystem::SetDrag(float k1, float k2)
+{
+	this->dragK1 = k1;
+	this->dragK2 = k2;
 }

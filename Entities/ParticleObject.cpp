@@ -42,8 +42,13 @@ void ParticleObject::Move(Vector3D displacement)
 
 void ParticleObject::PhysicsUpdate(sf::Time deltaTime)
 {
-	particle->Integrate(deltaTime.asSeconds());
-	this->renderedObject->setPosition(sf::Vector2f(particle->GetPosition().x, particle->GetPosition().y));
+	if (GetEnabledStatus())
+	{
+		GameObject::PhysicsUpdate(deltaTime);
+
+		particle->Integrate(deltaTime.asSeconds());
+		this->renderedObject->setPosition(sf::Vector2f(particle->GetPosition().x, particle->GetPosition().y));
+	}
 }
 
 Particle3D* ParticleObject::GetParticle()
@@ -51,3 +56,23 @@ Particle3D* ParticleObject::GetParticle()
 	return this->particle;
 }
 
+void ParticleObject::SetEnabledStatus(bool status)
+{
+	GameObject::SetEnabledStatus(status);
+	Renderer* renderer = (Renderer*)this->FindComponentByName(this->GetName() + " Renderer");
+
+	if(renderer == nullptr)
+	{
+		std::cerr << this->GetName() << " Renderer not found" << std::endl;
+		return;
+	}
+
+	if(status)
+	{
+		renderer->Enable();
+	}
+	else if(!status)
+	{
+		renderer->Disable();
+	}
+}

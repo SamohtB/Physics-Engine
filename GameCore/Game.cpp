@@ -9,13 +9,16 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
 
     ParticleObject* particle = new ParticleObject("Test Particle");
     GameObjectManager::GetInstance()->AddObject(particle);
+    particle->SetPosition(Vector3D(500.0f, 200.0f, 0.0f));
 
     ParticleSystem* particleSystem = new ParticleSystem("Particle System");
-    particleSystem->Initialize();
-
     particle->AttachComponent(particleSystem);
 
-    particle->SetPosition(Vector3D(500.0f, 500.0f, 0.0f));
+    particleSystem->SetGravity(Vector3D(0.0f, 50.0f, 0.0f));
+
+    particleSystem->Initialize();
+
+    
 }
 
 void Game::Run()
@@ -60,7 +63,7 @@ void Game::ProcessInput()
 
 void Game::Update(sf::Time deltaTime)
 {
-    this->registry->UpdateForces(deltaTime.asSeconds());
+    GameObjectManager::GetInstance()->Update(deltaTime);
     GameObjectManager::GetInstance()->PhysicsUpdate(deltaTime);
 }
 

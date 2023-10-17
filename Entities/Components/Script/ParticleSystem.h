@@ -10,6 +10,8 @@
 #include "../../../Physics/Particles/ParticleDrag.h"
 #include "../../ParticleObject.h"
 
+#include "ObjectLifeTime.h"
+
 namespace component
 {
 	using namespace baseclass;
@@ -37,11 +39,10 @@ namespace component
 		
 
 	private:
+		float particleLifeTime;
 		float dragK1;
 		float dragK2;
 		int maxParticles;
-		float lifeTime;
-		float ticks;
 
 		ParticleForceRegistry* forceRegistry;
 		ParticleGravity* gravityGenerator;

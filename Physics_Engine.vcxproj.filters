@@ -69,6 +69,9 @@
     <ClCompile Include="Entities\Components\Script\ParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Entities\Components\Script\ObjectLifeTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Physics\Particles\IParticleForceGenerator.h">
@@ -129,6 +132,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Entities\Components\Script\ParticleSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Components\Script\ObjectLifeTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

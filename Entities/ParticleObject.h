@@ -23,6 +23,7 @@ namespace entity
 		void PhysicsUpdate(sf::Time deltaTime) override;
 
 		Particle3D* GetParticle();
+		void SetEnabledStatus(bool status) override;
 
 	private:
 		sf::CircleShape* renderedObject;

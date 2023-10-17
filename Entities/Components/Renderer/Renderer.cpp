@@ -11,7 +11,10 @@ Renderer::Renderer(std::string strName) : Component(strName, ComponentType::REND
 
 void Renderer::Perform()
 {
-	this->window->draw(*this->drawable, this->renderStates);
+    if(this->isRendering)
+    {
+        this->window->draw(*this->drawable, this->renderStates);
+    }
 }
 
 void Renderer::Enable()
