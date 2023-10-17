@@ -6,10 +6,14 @@ ParticleSystem::ParticleSystem(std::string name) : Component(name, ComponentType
 {
 	// Default Values
 	this->maxParticles = 25;
-	this->gravityVector = Vector3D(0.0f, 250.0f, 0.0f);
-	this->dragK1 = 0.0f;
-	this->dragK2 = 0.0f;
-	this->particleLifeTime = 2.0f;
+	this->dragK1 = 0.1f;
+	this->dragK2 = 0.2f;
+	this->ticks = 0.0f;
+	this->emissionRate = 1.0f;
+	this->particleLifeTime = 5.0f;
+
+	this->gravityVector = Vector3D(0.0f, 100.f, 0.0f);
+	this->emissionVector = Vector3D(0.0f, -1000.f, 0.0f);
 }
 
 ParticleSystem::~ParticleSystem()
@@ -37,7 +41,33 @@ void ParticleSystem::Initialize()
 
 void ParticleSystem::Perform()
 {
+	this->ticks += this->deltaTime.asSeconds();
+
+	if(this->ticks >= 1 / this->emissionRate)
+	{
+		this->ticks = 0.0f;
+		this->SpawnParticle();
+	}
+
 	forceRegistry->UpdateForces(this->deltaTime.asSeconds());
+}
+
+void ParticleSystem::SpawnParticle()
+{
+	for(ParticleObject* particle : this->pooledParticleObjectList)
+	{
+		if(particle->GetEnabledStatus() == false)
+		{
+			particle->SetEnabledStatus(true);
+			particle->Reset();
+			particle->SetPosition(this->GetOwner()->GetPosition());
+
+			particle->GetParticle()->AddForce(this->emissionVector * 10);
+			break;
+		}
+	}
+
+	//std::cerr << "REACHED PARTICLE LIMIT" << std::endl;
 }
 
 void ParticleSystem::SetMaxParticles(int count)
@@ -64,7 +94,9 @@ void ParticleSystem::CreateParticlePool()
 		GameObjectManager::GetInstance()->AddObject(particle);
 
 		particle->SetPosition(position);
-		particle->SetEnabledStatus(true);
+		particle->SetEnabledStatus(false);
+
+		particle->GetParticle()->SetDamping(0.05f);
 
 		this->forceRegistry->Add(particle->GetParticle(), this->dragGenerator);
 		this->forceRegistry->Add(particle->GetParticle(), this->gravityGenerator);

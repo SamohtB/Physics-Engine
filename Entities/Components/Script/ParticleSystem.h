@@ -33,12 +33,13 @@ namespace component
 		void SetGravity(Vector3D gravityVector);
 		void SetDrag(float k1, float k2);
 
+	private:
+		void SpawnParticle();
 		void CreateParticlePool();
 
 	private:
-		
-
-	private:
+		float ticks;
+		float emissionRate;
 		float particleLifeTime;
 		float dragK1;
 		float dragK2;
@@ -49,6 +50,7 @@ namespace component
 		ParticleDrag* dragGenerator;
 
 		Vector3D gravityVector;
+		Vector3D emissionVector;
 
 		std::vector<ParticleObject*> pooledParticleObjectList;
 	};

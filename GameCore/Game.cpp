@@ -7,18 +7,14 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
 	this->renderWindow.setFramerateLimit(FRAME_RATE_LIMIT);
     this->registry = new ParticleForceRegistry();
 
-    ParticleObject* particle = new ParticleObject("Test Particle");
-    GameObjectManager::GetInstance()->AddObject(particle);
-    particle->SetPosition(Vector3D(500.0f, 200.0f, 0.0f));
+    EmptyGameObject* systemBody = new EmptyGameObject("GameObject Test");
+    GameObjectManager::GetInstance()->AddObject(systemBody);
+    systemBody->SetPosition(Vector3D(500.0f, 200.0f, 0.0f));
 
     ParticleSystem* particleSystem = new ParticleSystem("Particle System");
-    particle->AttachComponent(particleSystem);
-
-    particleSystem->SetGravity(Vector3D(0.0f, 50.0f, 0.0f));
+    systemBody->AttachComponent(particleSystem);
 
     particleSystem->Initialize();
-
-    
 }
 
 void Game::Run()

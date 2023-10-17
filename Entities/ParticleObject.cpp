@@ -13,7 +13,7 @@ void ParticleObject::Initialize()
 {
 	this->particle = new Particle3D();
 	this->renderedObject = new sf::CircleShape();
-	this->renderedObject->setRadius(25.0f);
+	this->renderedObject->setRadius(10.0f);
 	this->renderedObject->setFillColor(sf::Color::White);
 	this->renderedObject->setOutlineColor(sf::Color::Black);
 
@@ -75,4 +75,11 @@ void ParticleObject::SetEnabledStatus(bool status)
 	{
 		renderer->Disable();
 	}
+}
+
+void ParticleObject::Reset()
+{
+	this->particle->SetVelocity(Vector3D());
+	this->particle->SetAcceleration(Vector3D());
+	this->particle->ClearAccumulator();
 }

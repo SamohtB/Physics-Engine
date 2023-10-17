@@ -142,6 +142,7 @@
     <ClCompile Include="BaseClasses\Component.cpp" />
     <ClCompile Include="BaseClasses\GameObject.cpp" />
     <ClCompile Include="BaseClasses\Vector3D.cpp" />
+    <ClCompile Include="BaseClasses\EmptyGameObject.cpp" />
     <ClCompile Include="Entities\Components\Input\GeneralInput.cpp" />
     <ClCompile Include="Entities\Components\Renderer\Renderer.cpp" />
     <ClCompile Include="Entities\ParticleObject.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="BaseClasses\GameObject.h" />
     <ClInclude Include="BaseClasses\Vector3D.h" />
     <ClInclude Include="Config\Settings.h" />
+    <ClInclude Include="BaseClasses\EmptyGameObject.h" />
     <ClInclude Include="Entities\Components\Input\GeneralInput.h" />
     <ClInclude Include="Entities\Components\Renderer\Renderer.h" />
     <ClInclude Include="Entities\ParticleObject.h" />

@@ -25,6 +25,8 @@ namespace entity
 		Particle3D* GetParticle();
 		void SetEnabledStatus(bool status) override;
 
+		void Reset();
+
 	private:
 		sf::CircleShape* renderedObject;
 		Particle3D* particle;
