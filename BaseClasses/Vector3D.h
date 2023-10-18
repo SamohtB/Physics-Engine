@@ -21,6 +21,7 @@ namespace baseclass
 			Vector3D operator-=(Vector3D vectorB);
 			Vector3D operator*(float scalar) const;
 			Vector3D operator*=(float scalar);
+			friend std::ostream& operator<<(std::ostream& os, const Vector3D& vector);
 
 			void Zero();
 

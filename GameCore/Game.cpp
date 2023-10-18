@@ -17,6 +17,9 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
     ParticleSystem* particleSystem = new ParticleSystem("Particle System");
     systemBody->AttachComponent(particleSystem);
 
+    EmissionCircleShape* shapeEmission = new EmissionCircleShape("Circle Emission", particleSystem);
+    systemBody->AttachComponent(shapeEmission);
+
     particleSystem->SetGravity(Vector3D(0.0f, 200.0f, 0.0f));
     particleSystem->SetEmissionVector(Vector3D(-300.0f, -100.0f, 0.0f));
     particleSystem->SetEmissionRate(10.f);

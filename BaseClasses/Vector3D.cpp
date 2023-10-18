@@ -106,4 +106,8 @@ void Vector3D::Zero()
     this->z = 0;
 }
 
-
+std::ostream& baseclass::operator<<(std::ostream& os, const Vector3D& vector)
+{
+    os << "(" << vector.x << ", " << vector.y << ", " << vector.z << ")";
+    return os;
+}

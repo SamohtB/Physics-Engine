@@ -16,6 +16,7 @@
 
 #include "../Entities/ParticleObject.h"
 #include "../Entities/Components/Script/ParticleSystem.h"
+#include "../Entities/Components/Script/EmissionCircleShape.h"
 
 #include "../Physics/Particles/ParticleForceRegistry.h"
 #include "../Physics/Particles/ParticleSpring.h"

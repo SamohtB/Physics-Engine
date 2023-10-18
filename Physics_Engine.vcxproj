@@ -145,6 +145,7 @@
     <ClCompile Include="BaseClasses\EmptyGameObject.cpp" />
     <ClCompile Include="Entities\Components\Input\GeneralInput.cpp" />
     <ClCompile Include="Entities\Components\Renderer\Renderer.cpp" />
+    <ClCompile Include="Entities\Components\Script\EmissionCircleShape.cpp" />
     <ClCompile Include="Entities\ParticleObject.cpp" />
     <ClCompile Include="GameCore\Game.cpp" />
     <ClCompile Include="GameCore\Managers\GameObjectManager.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="BaseClasses\EmptyGameObject.h" />
     <ClInclude Include="Entities\Components\Input\GeneralInput.h" />
     <ClInclude Include="Entities\Components\Renderer\Renderer.h" />
+    <ClInclude Include="Entities\Components\Script\EmissionCircleShape.h" />
     <ClInclude Include="Entities\ParticleObject.h" />
     <ClInclude Include="GameCore\Game.h" />
     <ClInclude Include="GameCore\Managers\GameObjectManager.h" />
