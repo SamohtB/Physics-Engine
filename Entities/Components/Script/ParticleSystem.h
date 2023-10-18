@@ -33,7 +33,7 @@ namespace component
 		void SetGravity(Vector3D gravityVector);
 		void SetEmissionVector(Vector3D vector);
 		void SetEmissionRate(float ratePerSecond);
-		void SetParticleImage(sf::Sprite* sprite);
+		void SetParticleImage(sf::Texture* sprite);
 
 	private:
 		void SpawnParticle();
@@ -46,6 +46,8 @@ namespace component
 		float dragK1;
 		float dragK2;
 		int maxParticles;
+
+		sf::Texture* texture;
 
 		ParticleForceRegistry* forceRegistry;
 		ParticleGravity* gravityGenerator;

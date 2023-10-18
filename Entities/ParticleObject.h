@@ -24,12 +24,14 @@ namespace entity
 
 		Particle3D* GetParticle();
 		void SetEnabledStatus(bool status) override;
+		void SetRenderedImage(sf::Texture& texture);
 
 		void Reset();
 
 	private:
 		sf::CircleShape* renderedObject;
 		Particle3D* particle;
+		bool hasSprite;
 
 	};
 }

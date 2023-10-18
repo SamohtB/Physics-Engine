@@ -12,6 +12,8 @@ ParticleSystem::ParticleSystem(std::string name) : Component(name, ComponentType
 	this->emissionRate = 1.0f;
 	this->particleLifeTime = 5.0f;
 
+	this->texture = nullptr;
+
 	this->gravityVector = Vector3D(0.0f, 100.f, 0.0f);
 	this->emissionVector = Vector3D(0.0f, -100.f, 0.0f);
 }
@@ -95,6 +97,11 @@ void ParticleSystem::CreateParticlePool()
 
 		this->forceRegistry->Add(particle->GetParticle(), this->gravityGenerator);
 
+		if(this->texture!= nullptr)
+		{
+			particle->SetRenderedImage(*this->texture);
+		}
+
 		ObjectLifeTime* lifeTimeScript = new ObjectLifeTime(this->GetName() + " Life Time", this->particleLifeTime);
 		particle->AttachComponent(lifeTimeScript);
 	}
@@ -115,7 +122,7 @@ void ParticleSystem::SetEmissionRate(float ratePerSecond)
 	this->emissionRate = ratePerSecond;
 }
 
-void ParticleSystem::SetParticleImage(sf::Sprite* sprite)
+void ParticleSystem::SetParticleImage(sf::Texture* texture)
 {
-
+	this->texture = texture;
 }

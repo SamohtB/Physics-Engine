@@ -5,6 +5,7 @@ using namespace entity;
 ParticleObject::ParticleObject(std::string name) : GameObject(name)
 {
 	this->isEnabled = true;
+	this->hasSprite = false;
 	this->particle = nullptr;
 	this->renderedObject = nullptr;
 }
@@ -31,7 +32,15 @@ Vector3D ParticleObject::GetPosition()
 void ParticleObject::SetPosition(Vector3D position)
 {
 	sf::Vector2f position2D = sf::Vector2f(position.x, position.y);
-	this->renderedObject->setPosition(position2D);
+	if(this->hasSprite)
+	{
+		this->sprite->setPosition(position2D);
+	}
+	else if (!this->hasSprite)
+	{
+		this->renderedObject->setPosition(position2D);
+	}
+
 	this->particle->SetPosition(position);
 }
 
@@ -47,7 +56,14 @@ void ParticleObject::PhysicsUpdate(sf::Time deltaTime)
 		GameObject::PhysicsUpdate(deltaTime);
 
 		particle->Integrate(deltaTime.asSeconds());
-		this->renderedObject->setPosition(sf::Vector2f(particle->GetPosition().x, particle->GetPosition().y));
+		if (this->hasSprite)
+		{
+			this->sprite->setPosition(sf::Vector2f(particle->GetPosition().x, particle->GetPosition().y));
+		}
+		else if (!this->hasSprite)
+		{
+			this->renderedObject->setPosition(sf::Vector2f(particle->GetPosition().x, particle->GetPosition().y));
+		}
 	}
 }
 
@@ -82,4 +98,20 @@ void ParticleObject::Reset()
 	this->particle->SetVelocity(Vector3D());
 	this->particle->SetAcceleration(Vector3D());
 	this->particle->ClearAccumulator();
+}
+
+void ParticleObject::SetRenderedImage(sf::Texture& texture)
+{
+	sf::Sprite* sprite = new sf::Sprite();
+	sprite->setTexture(texture);
+	sprite->setOrigin((float)texture.getSize().x / 2, (float)texture.getSize().y / 2);
+	this->sprite = sprite;
+
+	Renderer* renderer = (Renderer*)this->FindComponentByName(this->GetName() + " Renderer");
+
+	if(renderer != nullptr)
+	{
+		renderer->AssignDrawable(sprite);
+		this->hasSprite = true;
+	}
 }
