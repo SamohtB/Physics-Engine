@@ -9,15 +9,16 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
 
     EmptyGameObject* systemBody = new EmptyGameObject("GameObject Test");
     GameObjectManager::GetInstance()->AddObject(systemBody);
-    systemBody->SetPosition(Vector3D(500.0f, 500.0f, 0.0f));
+    systemBody->SetPosition(Vector3D(500.0f, 200.0f, 0.0f));
 
     ParticleSystem* particleSystem = new ParticleSystem("Particle System");
     systemBody->AttachComponent(particleSystem);
 
     particleSystem->SetGravity(Vector3D(0.0f, 200.0f, 0.0f));
-    particleSystem->SetEmissionVector(Vector3D(300.0f, -1000.0f, 0.0f));
+    particleSystem->SetEmissionVector(Vector3D(-300.0f, -100.0f, 0.0f));
     particleSystem->SetEmissionRate(10.f);
-    particleSystem->SetLifeTime(3.5f);
+    particleSystem->SetLifeTime(2.0f);
+    particleSystem->SetMaxParticles(25);
 
     particleSystem->Initialize();
 }

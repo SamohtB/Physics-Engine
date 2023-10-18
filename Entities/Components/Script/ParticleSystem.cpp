@@ -20,7 +20,6 @@ ParticleSystem::~ParticleSystem()
 {
 	delete this->forceRegistry;
 	delete this->gravityGenerator;
-	delete this->dragGenerator;
 
 	for(ParticleObject* particle : this->pooledParticleObjectList)
 	{
@@ -65,14 +64,11 @@ void ParticleSystem::SpawnParticle()
 			break;
 		}
 	}
-
-	//std::cerr << "REACHED PARTICLE LIMIT" << std::endl;
 }
 
 void ParticleSystem::SetMaxParticles(int count)
 {
 	this->maxParticles = count;
-	this->CreateParticlePool();
 }
 
 void ParticleSystem::SetLifeTime(float lifeTime)
@@ -109,12 +105,6 @@ void ParticleSystem::SetGravity(Vector3D gravityVector)
 	this->gravityVector = gravityVector;
 }
 
-void ParticleSystem::SetDrag(float k1, float k2)
-{
-	this->dragK1 = k1;
-	this->dragK2 = k2;
-}
-
 void ParticleSystem::SetEmissionVector(Vector3D vector)
 {
 	this->emissionVector = vector;
@@ -123,4 +113,9 @@ void ParticleSystem::SetEmissionVector(Vector3D vector)
 void ParticleSystem::SetEmissionRate(float ratePerSecond)
 {
 	this->emissionRate = ratePerSecond;
+}
+
+void ParticleSystem::SetParticleImage(sf::Sprite* sprite)
+{
+
 }

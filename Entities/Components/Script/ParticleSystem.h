@@ -31,9 +31,9 @@ namespace component
 		void SetMaxParticles(int count);
 		void SetLifeTime(float lifeTime);
 		void SetGravity(Vector3D gravityVector);
-		void SetDrag(float k1, float k2);
 		void SetEmissionVector(Vector3D vector);
 		void SetEmissionRate(float ratePerSecond);
+		void SetParticleImage(sf::Sprite* sprite);
 
 	private:
 		void SpawnParticle();
@@ -49,7 +49,6 @@ namespace component
 
 		ParticleForceRegistry* forceRegistry;
 		ParticleGravity* gravityGenerator;
-		ParticleDrag* dragGenerator;
 
 		Vector3D gravityVector;
 		Vector3D emissionVector;
