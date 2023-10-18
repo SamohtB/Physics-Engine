@@ -32,6 +32,8 @@ namespace component
 		void SetLifeTime(float lifeTime);
 		void SetGravity(Vector3D gravityVector);
 		void SetDrag(float k1, float k2);
+		void SetEmissionVector(Vector3D vector);
+		void SetEmissionRate(float ratePerSecond);
 
 	private:
 		void SpawnParticle();

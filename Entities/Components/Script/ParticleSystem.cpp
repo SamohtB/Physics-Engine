@@ -13,7 +13,7 @@ ParticleSystem::ParticleSystem(std::string name) : Component(name, ComponentType
 	this->particleLifeTime = 5.0f;
 
 	this->gravityVector = Vector3D(0.0f, 100.f, 0.0f);
-	this->emissionVector = Vector3D(0.0f, -1000.f, 0.0f);
+	this->emissionVector = Vector3D(0.0f, -100.f, 0.0f);
 }
 
 ParticleSystem::~ParticleSystem()
@@ -34,7 +34,6 @@ void ParticleSystem::Initialize()
 {
 	this->forceRegistry = new ParticleForceRegistry();
 	this->gravityGenerator = new ParticleGravity(this->gravityVector);
-	this->dragGenerator = new ParticleDrag(this->dragK1, this->dragK2);
 
 	CreateParticlePool();
 }
@@ -62,7 +61,7 @@ void ParticleSystem::SpawnParticle()
 			particle->Reset();
 			particle->SetPosition(this->GetOwner()->GetPosition());
 
-			particle->GetParticle()->AddForce(this->emissionVector * 10);
+			particle->GetParticle()->AddForce(this->emissionVector * 20);
 			break;
 		}
 	}
@@ -96,9 +95,8 @@ void ParticleSystem::CreateParticlePool()
 		particle->SetPosition(position);
 		particle->SetEnabledStatus(false);
 
-		particle->GetParticle()->SetDamping(0.05f);
+		particle->GetParticle()->SetDamping(1.f);
 
-		this->forceRegistry->Add(particle->GetParticle(), this->dragGenerator);
 		this->forceRegistry->Add(particle->GetParticle(), this->gravityGenerator);
 
 		ObjectLifeTime* lifeTimeScript = new ObjectLifeTime(this->GetName() + " Life Time", this->particleLifeTime);
@@ -115,4 +113,14 @@ void ParticleSystem::SetDrag(float k1, float k2)
 {
 	this->dragK1 = k1;
 	this->dragK2 = k2;
+}
+
+void ParticleSystem::SetEmissionVector(Vector3D vector)
+{
+	this->emissionVector = vector;
+}
+
+void ParticleSystem::SetEmissionRate(float ratePerSecond)
+{
+	this->emissionRate = ratePerSecond;
 }
