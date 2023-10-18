@@ -7,6 +7,9 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
 	this->renderWindow.setFramerateLimit(FRAME_RATE_LIMIT);
     this->registry = new ParticleForceRegistry();
 
+    sf::Texture* texture = new sf::Texture();
+    texture->loadFromFile("Assets/orb_red.png");
+
     EmptyGameObject* systemBody = new EmptyGameObject("GameObject Test");
     GameObjectManager::GetInstance()->AddObject(systemBody);
     systemBody->SetPosition(Vector3D(500.0f, 200.0f, 0.0f));
@@ -17,8 +20,9 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
     particleSystem->SetGravity(Vector3D(0.0f, 200.0f, 0.0f));
     particleSystem->SetEmissionVector(Vector3D(-300.0f, -100.0f, 0.0f));
     particleSystem->SetEmissionRate(10.f);
-    particleSystem->SetLifeTime(2.0f);
+    particleSystem->SetLifeTime(3.0f);
     particleSystem->SetMaxParticles(25);
+    particleSystem->SetParticleImage(texture);
 
     particleSystem->Initialize();
 }
