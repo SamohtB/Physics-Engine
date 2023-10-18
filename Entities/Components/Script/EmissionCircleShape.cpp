@@ -16,7 +16,7 @@ EmissionCircleShape::~EmissionCircleShape()
 
 void EmissionCircleShape::Perform()
 {
-	this->angle += this->deltaTime.asSeconds() * 10;
+	this->angle += this->deltaTime.asSeconds() * 2.0f;
 	this->angle = fmod(this->angle, 365.0);
 
 	if (this->angle < 0) 

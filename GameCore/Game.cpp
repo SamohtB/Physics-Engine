@@ -12,7 +12,7 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
 
     EmptyGameObject* systemBody = new EmptyGameObject("GameObject Test");
     GameObjectManager::GetInstance()->AddObject(systemBody);
-    systemBody->SetPosition(Vector3D(500.0f, 200.0f, 0.0f));
+    systemBody->SetPosition(Vector3D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0.0f));
 
     ParticleSystem* particleSystem = new ParticleSystem("Particle System");
     systemBody->AttachComponent(particleSystem);
