@@ -58,7 +58,7 @@ Vector3D Vector3D::operator*=(float scalar)
     return *this;
 }
 
-float Vector3D::DotProduct(Vector3D vectorB)
+float Vector3D::Dot(Vector3D vectorB)
 {
     return (this->x * vectorB.x + this->y * vectorB.y + this->z * vectorB.z);
 }

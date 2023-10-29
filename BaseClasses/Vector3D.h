@@ -25,7 +25,7 @@ namespace baseclass
 
 			void Zero();
 
-			float DotProduct(Vector3D vectorB);
+			float Dot(Vector3D vectorB);
 			Vector3D CrossProduct(Vector3D vectorB);
 
 			Vector3D Normalize();

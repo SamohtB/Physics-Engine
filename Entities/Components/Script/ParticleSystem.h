@@ -5,9 +5,9 @@
 #include "../../../GameCore/Managers/GameObjectManager.h"
 
 #include "../../../BaseClasses/Component.h"
-#include "../../../Physics/Particles/ParticleForceRegistry.h"
-#include "../../../Physics/Particles/ParticleGravity.h"
-#include "../../../Physics/Particles/ParticleDrag.h"
+#include "../../../Physics/Particles/Forces/ParticleForceRegistry.h"
+#include "../../../Physics/Particles/Forces/ParticleGravity.h"
+#include "../../../Physics/Particles/Forces/ParticleDrag.h"
 #include "../../ParticleObject.h"
 
 #include "ObjectLifeTime.h"

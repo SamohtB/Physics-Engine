@@ -1,19 +1,18 @@
 #pragma once
-#ifndef PHYSICS_PARTICLE_SPRING_H
-#define PHYSICS_PARTICLE_SPRING_H
+#ifndef PHYSICS_PARTICLE_BUNGEE_H
+#define PHYSICS_PARTICLE_BUNGEE_H
 
-#include "IParticleForceGenerator.h"
+#include "../Forces/IParticleForceGenerator.h"
 
 namespace physics
 {
-    class ParticleSpring : public IParticleForceGenerator
+    class ParticleBungee : public IParticleForceGenerator
     {
     public:
-        ParticleSpring(Particle3D* other, float springConstant, float restLength) : 
+        ParticleBungee(Vector3D* anchor, float springConstant, float restLength) : 
 			other(other), springConstant(springConstant), restLength(restLength) {}
-
         virtual void UpdateForce(Particle3D* particle, float deltaTime);
-
+        
     private:
         Particle3D* other;
         float springConstant;
@@ -21,6 +20,6 @@ namespace physics
     };
 }
 
-#endif // !PHYSICS_PARTICLE_SPRING_H
+#endif // !PHYSICS_PARTICLE_BUNGEE_H
 
 

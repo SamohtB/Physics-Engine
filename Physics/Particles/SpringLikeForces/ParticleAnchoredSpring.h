@@ -2,7 +2,7 @@
 #ifndef PHYSICS_PARTICLE_ANCHORED_SPRING_H
 #define PHYSICS_PARTICLE_ANCHORED_SPRING_H
 
-#include "IParticleForceGenerator.h"
+#include "../Forces/IParticleForceGenerator.h"
 
 namespace physics
 {

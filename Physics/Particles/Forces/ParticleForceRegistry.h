@@ -4,7 +4,7 @@
 
 #include <vector>
 
-#include "Particle3D.h"
+#include "../Particle3D.h"
 #include "IParticleForceGenerator.h"
 
 namespace physics
@@ -23,8 +23,8 @@ namespace physics
 
 	public:
 		void Add(Particle3D* particle, IParticleForceGenerator* forceGenerator);
-		void Remove(Particle3D* particle, IParticleForceGenerator* forceGenerator);
-		void Clear();
+		/*void Remove(Particle3D* particle, IParticleForceGenerator* forceGenerator);
+		void Clear();*/
 		void UpdateForces(float duration);
 	};
 }

@@ -4,6 +4,7 @@ using namespace physics;
 
 Particle3D::Particle3D()
 {
+	this->mass = 1;
 	this->inverseMass = 1;
 	this->damping = 0.99f;
 
@@ -44,16 +45,17 @@ void Particle3D::SetMass(float mass)
 {
 	assert(mass != 0);
 	this->inverseMass = 1.0f / mass;
+	this->mass = mass;
 }
 
 float Particle3D::GetMass()
 {
-	if(this->inverseMass == 0)
-	{
-		return FLT_MAX;
-	}
+	return this->mass;
+}
 
-	return 1.0f / this->inverseMass;
+float Particle3D::GetInverseMass()
+{
+	return this->inverseMass;
 }
 		
 void Particle3D::SetVelocity(Vector3D velocity)
@@ -95,5 +97,16 @@ void Particle3D::ClearAccumulator()
 {
 	this->forceAccumulator.Zero();
 }
+
+void Particle3D::SetRadius(float radius)
+{
+	this->radius = radius;
+}
+
+float Particle3D::GetRadius()
+{
+	return this->radius;
+}
+
 
 

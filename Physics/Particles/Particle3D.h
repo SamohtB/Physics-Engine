@@ -14,12 +14,12 @@ namespace physics
 		Particle3D();
 		void Integrate(float deltaTime);
 
-	public:
 		void SetDamping(float damping);
 		float GetDamping();
 
 		void SetMass(float mass);
 		float GetMass();
+		float GetInverseMass();
 
 		void SetVelocity(Vector3D velocity);
 		Vector3D GetVelocity();
@@ -34,9 +34,14 @@ namespace physics
 		void AddForce(Vector3D force);
 		void ClearAccumulator();
 
+		void SetRadius(float radius);
+		float GetRadius();
+
 	private:
+		float mass;
 		float inverseMass;
 		float damping;
+		float radius;
 
 		Vector3D position;
 		Vector3D velocity;

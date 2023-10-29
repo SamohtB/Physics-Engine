@@ -18,10 +18,10 @@
 #include "../Entities/Components/Script/ParticleSystem.h"
 #include "../Entities/Components/Script/EmissionCircleShape.h"
 
-#include "../Physics/Particles/ParticleForceRegistry.h"
-#include "../Physics/Particles/ParticleSpring.h"
-#include "../Physics/Particles/ParticleDrag.h"
-#include "../Physics/Particles/ParticleAnchoredSpring.h"
+#include "../Physics/Particles/Forces/ParticleForceRegistry.h"
+#include "../Physics/Particles/SpringLikeForces/ParticleSpring.h"
+#include "../Physics/Particles/Forces/ParticleDrag.h"
+#include "../Physics/Particles/SpringLikeForces/ParticleAnchoredSpring.h"
 
 namespace gamecore
 {
