@@ -26,14 +26,14 @@ namespace component
 		~ParticleSystem();
 
 		void Initialize();
-		void Perform();
+		void Perform() override;
 
 		void SetMaxParticles(int count);
 		void SetLifeTime(float lifeTime);
 		void SetGravity(Vector3D gravityVector);
 		void SetEmissionVector(Vector3D vector);
 		void SetEmissionRate(float ratePerSecond);
-		void SetParticleImage(sf::Texture* sprite);
+		void SetParticleImage(sf::Texture* texture);
 
 	private:
 		void SpawnParticle();

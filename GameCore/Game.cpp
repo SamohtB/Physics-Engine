@@ -5,46 +5,23 @@ using namespace gamecore;
 Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics Engine by Banatin and Guzman", sf::Style::Titlebar | sf::Style::Close)
 {
 	this->renderWindow.setFramerateLimit(FRAME_RATE_LIMIT);
-    this->registry = new ParticleForceRegistry();
-
-    sf::Texture* texture = new sf::Texture();
-    texture->loadFromFile("Assets/orb_red.png");
-
-    EmptyGameObject* systemBody = new EmptyGameObject("GameObject Test");
-    GameObjectManager::GetInstance()->AddObject(systemBody);
-    systemBody->SetPosition(Vector3D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0.0f));
-
-    ParticleSystem* particleSystem = new ParticleSystem("Particle System");
-    systemBody->AttachComponent(particleSystem);
-
-    EmissionCircleShape* shapeEmission = new EmissionCircleShape("Circle Emission", particleSystem);
-    systemBody->AttachComponent(shapeEmission);
-
-    particleSystem->SetGravity(Vector3D(0.0f, 200.0f, 0.0f));
-    particleSystem->SetEmissionVector(Vector3D(-300.0f, -100.0f, 0.0f));
-    particleSystem->SetEmissionRate(10.f);
-    particleSystem->SetLifeTime(3.0f);
-    particleSystem->SetMaxParticles(25);
-    particleSystem->SetParticleImage(texture);
-
-    particleSystem->Initialize();
 }
 
 void Game::Run()
 {
-    sf::Clock CClock = sf::Clock();
-    sf::Time tLastUpdate = sf::Time::Zero;
-    sf::Time tTimePerFrame = sf::seconds(1.0f / FRAME_RATE_LIMIT);
+    sf::Clock clock = sf::Clock();
+    sf::Time lastUpdate = sf::Time::Zero;
+    sf::Time timePerFrame = sf::seconds(1.0f / FRAME_RATE_LIMIT);
 
     while(this->renderWindow.isOpen()) 
     {
         this->ProcessInput();
-        tLastUpdate += CClock.restart();
+        lastUpdate += clock.restart();
 
-        while(tLastUpdate > tTimePerFrame) 
+        while(lastUpdate > timePerFrame) 
         {
-            tLastUpdate -= tTimePerFrame;
-            this->Update(tTimePerFrame);
+            lastUpdate -= timePerFrame;
+            this->Update(timePerFrame);
         }
 
         this->Render();
