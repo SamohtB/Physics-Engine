@@ -12,6 +12,8 @@
 
 #include "../Entities/ParticleObject.h"
 
+#include "MassAggregateSystem.h"
+
 namespace gamecore
 {
 	using namespace baseclass;
@@ -31,6 +33,7 @@ namespace gamecore
 
 	private:
 		sf::RenderWindow renderWindow;
+		MassAggregateSystem* massAggregateSystem;
 	};
 }
 

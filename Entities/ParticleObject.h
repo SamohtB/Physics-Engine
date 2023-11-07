@@ -15,12 +15,12 @@ namespace entity
 	{
 	public:
 		ParticleObject(std::string name);
-		void Initialize();
+		void Initialize() override;
 
 		Vector3D GetPosition() override;
 		void SetPosition(Vector3D position) override;
 		void Move(Vector3D displacement) override;
-		void PhysicsUpdate(sf::Time deltaTime) override;
+		void Update(sf::Time deltaTime) override;
 
 		Particle3D* GetParticle();
 		void SetEnabledStatus(bool status) override;

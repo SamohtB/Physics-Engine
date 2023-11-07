@@ -2,7 +2,7 @@
 #ifndef COMPONENT_EMISSION_CIRCLE_SHAPE_H
 #define COMPONENT_EMISSION_CIRCLE_SHAPE_H
 
-#include "ParticleSystem.h"
+#include "../Physics/ParticleSystem.h"
 
 namespace component
 {

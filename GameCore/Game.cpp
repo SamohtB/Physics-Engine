@@ -5,6 +5,15 @@ using namespace gamecore;
 Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics Engine by Banatin and Guzman", sf::Style::Titlebar | sf::Style::Close)
 {
 	this->renderWindow.setFramerateLimit(FRAME_RATE_LIMIT);
+
+    massAggregateSystem = new MassAggregateSystem();
+
+    ParticleObject* particle = new ParticleObject("Particle_1");
+
+    GameObjectManager::GetInstance()->AddObject(particle);
+    massAggregateSystem->AddParticle(particle->GetParticle());
+
+    particle->SetPosition(Vector3D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0));
 }
 
 void Game::Run()
@@ -49,6 +58,7 @@ void Game::ProcessInput()
 
 void Game::Update(sf::Time deltaTime)
 {
+    massAggregateSystem->Update(deltaTime.asSeconds());
     GameObjectManager::GetInstance()->Update(deltaTime);
     GameObjectManager::GetInstance()->PhysicsUpdate(deltaTime);
 }

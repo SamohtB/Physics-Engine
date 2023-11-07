@@ -49,13 +49,12 @@ void ParticleObject::Move(Vector3D displacement)
 	this->SetPosition(this->particle->GetPosition() + displacement);
 }
 
-void ParticleObject::PhysicsUpdate(sf::Time deltaTime)
+void ParticleObject::Update(sf::Time deltaTime)
 {
 	if (GetEnabledStatus())
 	{
 		GameObject::PhysicsUpdate(deltaTime);
 
-		particle->Integrate(deltaTime.asSeconds());
 		if (this->hasSprite)
 		{
 			this->sprite->setPosition(sf::Vector2f(particle->GetPosition().x, particle->GetPosition().y));
