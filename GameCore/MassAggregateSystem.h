@@ -6,6 +6,8 @@
 #include "../Physics/Particles/Forces/ParticleGravity.h"
 #include "../Physics/Particles/Cables/ParticleOverlapContact.h"
 #include "../Physics/Particles/Cables/ParticleGroundContact.h"
+#include "../Physics/Particles/SpringLikeForces/ParticleAnchoredSpring.h"
+#include "../Physics/Particles/SpringLikeForces/ParticleBungee.h"
 
 namespace gamecore
 {
@@ -14,8 +16,11 @@ namespace gamecore
 	class MassAggregateSystem
 	{
 	public:
-		MassAggregateSystem(Vector3D gravity = Vector3D(0,100,0), int maxContacts = 5, float restitution = 0.8f);
+		MassAggregateSystem(Vector3D gravity = Vector3D(0, 100.0f, 0), int maxContacts = 5, float restitution = 0.9f);
 		~MassAggregateSystem();
+
+		void AttachParticleToAnchoredSpring(Particle3D* particle, Vector3D* anchor, float springConstant, float restLength);
+		void AttachParticleToBungee(Particle3D* particle, Vector3D* anchor, float springConstant, float restLength);
 
 		void AddParticle(Particle3D* particle, bool hasGravity = true, bool hasOverlap = true);
 		void Update(float deltaTime);

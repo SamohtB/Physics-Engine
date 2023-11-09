@@ -8,18 +8,49 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
 
     massAggregateSystem = new MassAggregateSystem();
 
-    ParticleObject* particle = new ParticleObject("Particle_1");
+    this->vectors.push_back(new Vector3D(0.0f, 500.0f, 0.0f));
+	this->vectors.push_back(new Vector3D(SCREEN_WIDTH, 500.0f, 0.0f));
 
-    GameObjectManager::GetInstance()->AddObject(particle);
-    massAggregateSystem->AddParticle(particle->GetParticle());
+    VisibleLine* floor = new VisibleLine("Floor", vectors[0], vectors[1]);
+    GameObjectManager::GetInstance()->AddObject(floor);
 
-    particle->SetPosition(Vector3D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0));
+    AddCollidingParticles();
+    AddAnchoredParticle();
 
-    particle = new ParticleObject("Particle_2");
-    GameObjectManager::GetInstance()->AddObject(particle);
-    massAggregateSystem->AddParticle(particle->GetParticle());
+}
 
-     particle->SetPosition(Vector3D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 100, 0));
+void Game::AddCollidingParticles()
+{
+	ParticleObject* particle = new ParticleObject("Particle_1");
+
+	GameObjectManager::GetInstance()->AddObject(particle);
+	massAggregateSystem->AddParticle(particle->GetParticle());
+
+    particle->SetRadius(10.0f);
+	particle->SetPosition(Vector3D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0));
+
+	particle = new ParticleObject("Particle_2");
+	GameObjectManager::GetInstance()->AddObject(particle);
+	massAggregateSystem->AddParticle(particle->GetParticle());
+
+    particle->SetRadius(10.0f);
+	particle->SetPosition(Vector3D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 100, 0));
+}
+
+void Game::AddAnchoredParticle()
+{
+	ParticleObject* particle = new ParticleObject("Anchored_Particle");
+	GameObjectManager::GetInstance()->AddObject(particle);
+
+    particle->SetRadius(10.0f);
+    particle->SetPosition(Vector3D(SCREEN_WIDTH / 4, 300.0f, 0.0f));
+
+	this->vectors.push_back(new Vector3D(SCREEN_WIDTH / 3, 250.0f, 0.0f));
+
+	massAggregateSystem->AttachParticleToAnchoredSpring(particle->GetParticle(), this->vectors.back(), 0.5f, 75.0f);
+
+	VisibleLine* line = new VisibleLine("AnchorLine", particle->GetParticle()->GetPositionReference(), this->vectors.back());
+	GameObjectManager::GetInstance()->AddObject(line);
 }
 
 void Game::Run()

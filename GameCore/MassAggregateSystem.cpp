@@ -44,5 +44,10 @@ void MassAggregateSystem::AddParticle(Particle3D* particle, bool hasGravity, boo
 	}
 }
 
+void MassAggregateSystem::AttachParticleToAnchoredSpring(Particle3D* particle, Vector3D* anchor, float springConstant, float restLength)
+{
+	this->AddParticle(particle);
 
-
+	ParticleAnchoredSpring* anchoredSpring = new ParticleAnchoredSpring(anchor, springConstant, restLength);
+	this->particleWorld->registry.Add(particle, anchoredSpring);
+}

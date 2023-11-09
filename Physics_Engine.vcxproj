@@ -169,6 +169,7 @@
     <ClCompile Include="Physics\Particles\SpringLikeForces\ParticleBouyancy.cpp" />
     <ClCompile Include="Physics\Particles\SpringLikeForces\ParticleBungee.cpp" />
     <ClCompile Include="Physics\Particles\SpringLikeForces\ParticleSpring.cpp" />
+    <ClCompile Include="Entities\VisibleLine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseClasses\Component.h" />
@@ -204,6 +205,7 @@
     <ClInclude Include="Physics\Particles\SpringLikeForces\ParticleBouyancy.h" />
     <ClInclude Include="Physics\Particles\SpringLikeForces\ParticleBungee.h" />
     <ClInclude Include="Physics\Particles\SpringLikeForces\ParticleSpring.h" />
+    <ClInclude Include="Entities\VisibleLine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -53,9 +53,7 @@ void ParticleObject::Update(sf::Time deltaTime)
 {
 	if (GetEnabledStatus())
 	{
-		GameObject::Update(deltaTime);
-
-		//std::cout << particle->GetPosition() << std::endl; Prints Current Position
+		GameObject::Update(deltaTime);	
 
 		if (this->hasSprite)
 		{
@@ -121,4 +119,5 @@ void ParticleObject::SetRadius(float radius)
 {
 	this->particle->SetRadius(radius);
 	this->renderedObject->setRadius(radius);
+	this->renderedObject->setOrigin(radius, radius);
 }

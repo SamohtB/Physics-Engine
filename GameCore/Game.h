@@ -11,6 +11,7 @@
 #include "Managers/GameObjectManager.h"
 
 #include "../Entities/ParticleObject.h"
+#include "../Entities/VisibleLine.h"
 
 #include "MassAggregateSystem.h"
 
@@ -24,6 +25,8 @@ namespace gamecore
 	class Game
 	{
 	public:
+		void AddCollidingParticles();
+		void AddAnchoredParticle();
 		Game();
 
 		void Run();
@@ -34,6 +37,7 @@ namespace gamecore
 	private:
 		sf::RenderWindow renderWindow;
 		MassAggregateSystem* massAggregateSystem;
+		std::vector<Vector3D*> vectors;
 	};
 }
 

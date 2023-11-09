@@ -105,6 +105,9 @@
     <ClCompile Include="GameCore\MassAggregateSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Entities\VisibleLine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Physics\Particles\Particle3D.h">
@@ -204,6 +207,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameCore\MassAggregateSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\VisibleLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

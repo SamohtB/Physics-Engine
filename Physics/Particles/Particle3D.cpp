@@ -7,6 +7,7 @@ Particle3D::Particle3D()
 	this->mass = 1;
 	this->inverseMass = 1;
 	this->damping = 0.99f;
+	this->radius = 0.0f;
 
 	this->position = Vector3D();
 	this->velocity = Vector3D();
