@@ -10,6 +10,7 @@ namespace physics
 	{
 	public:
 		virtual void UpdateForce(Particle3D* particle, float duration) = 0;
+		virtual ~IParticleForceGenerator() = default;
 	};
 }
 

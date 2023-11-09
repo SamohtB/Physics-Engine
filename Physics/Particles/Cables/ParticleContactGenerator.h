@@ -10,6 +10,7 @@ namespace physics
 	{
 	public:
 		virtual unsigned FillContact(ParticleContact* contact, unsigned limit) = 0;
+		virtual ~ParticleContactGenerator() = default;
 	};
 }
 

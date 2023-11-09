@@ -15,7 +15,7 @@ namespace physics
 		ParticleOverlapContact(float restitution);
 
 		void AddParticle(Particle3D* particle);
-		virtual unsigned FillContact(ParticleContact* contact, unsigned limit);
+		unsigned FillContact(ParticleContact* contact, unsigned limit) override;
 
 		std::vector<Particle3D*> particleList;
 		float restitution;
