@@ -26,6 +26,8 @@ namespace entity
 		void SetEnabledStatus(bool status) override;
 		void SetRenderedImage(sf::Texture& texture);
 
+		void SetRadius(float radius);
+
 		void Reset();
 
 	private:

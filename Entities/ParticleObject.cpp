@@ -14,7 +14,7 @@ void ParticleObject::Initialize()
 {
 	this->particle = new Particle3D();
 	this->renderedObject = new sf::CircleShape();
-	this->renderedObject->setRadius(10.0f);
+	this->SetRadius(10.0f);
 	this->renderedObject->setFillColor(sf::Color::White);
 	this->renderedObject->setOutlineColor(sf::Color::Black);
 
@@ -53,7 +53,9 @@ void ParticleObject::Update(sf::Time deltaTime)
 {
 	if (GetEnabledStatus())
 	{
-		GameObject::PhysicsUpdate(deltaTime);
+		GameObject::Update(deltaTime);
+
+		//std::cout << particle->GetPosition() << std::endl; Prints Current Position
 
 		if (this->hasSprite)
 		{
@@ -113,4 +115,10 @@ void ParticleObject::SetRenderedImage(sf::Texture& texture)
 		renderer->AssignDrawable(sprite);
 		this->hasSprite = true;
 	}
+}
+
+void ParticleObject::SetRadius(float radius)
+{
+	this->particle->SetRadius(radius);
+	this->renderedObject->setRadius(radius);
 }

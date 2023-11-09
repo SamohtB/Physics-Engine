@@ -9,6 +9,7 @@ namespace physics
 {
 	class ParticleGroundContact :  public ParticleContactGenerator
 	{
+	public:
 		ParticleGroundContact(float yLimit, float restitution);
 
 		void AddParticle(Particle3D* particle);

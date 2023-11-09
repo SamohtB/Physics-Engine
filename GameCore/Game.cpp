@@ -14,6 +14,12 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
     massAggregateSystem->AddParticle(particle->GetParticle());
 
     particle->SetPosition(Vector3D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0));
+
+    particle = new ParticleObject("Particle_2");
+    GameObjectManager::GetInstance()->AddObject(particle);
+    massAggregateSystem->AddParticle(particle->GetParticle());
+
+     particle->SetPosition(Vector3D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 100, 0));
 }
 
 void Game::Run()
