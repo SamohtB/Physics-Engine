@@ -51,3 +51,11 @@ void MassAggregateSystem::AttachParticleToAnchoredSpring(Particle3D* particle, V
 	ParticleAnchoredSpring* anchoredSpring = new ParticleAnchoredSpring(anchor, springConstant, restLength);
 	this->particleWorld->registry.Add(particle, anchoredSpring);
 }
+
+void MassAggregateSystem::AttachParticleToAnchoredCable(Particle3D* particle, Vector3D* anchor, float maxLength, float restitution)
+{
+	this->AddParticle(particle);
+	
+	ParticleCable* anchoredCable = new ParticleCable(maxLength, restitution);
+	this->particleWorld->particleContactGeneratorList.push_back(anchoredCable);
+}

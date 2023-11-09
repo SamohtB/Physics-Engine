@@ -15,7 +15,7 @@ namespace physics
 
 	protected:
 		float CurrentLength();
-		virtual unsigned FillContact(ParticleContact* contact, float limit) = 0;
+		virtual unsigned FillContact(ParticleContact* contact, unsigned limit) = 0;
 	};	
 }
 

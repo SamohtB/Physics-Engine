@@ -9,9 +9,10 @@ namespace physics
 	class ParticleCable : public ParticleLink
 	{
 	public:
+		ParticleCable(float maxLength, float restitution) : maxLength(maxLength), restitution(restitution) {}
 		float maxLength;
 		float restitution;
-		virtual unsigned FillContact(ParticleContact* contact, unsigned limit);
+		unsigned FillContact(ParticleContact* contact, unsigned limit) override;
 	};
 }
 

@@ -9,7 +9,7 @@ namespace physics
     class ParticleBungee : public IParticleForceGenerator
     {
     public:
-        ParticleBungee(Vector3D* anchor, float springConstant, float restLength) : 
+        ParticleBungee(Particle3D* other, float springConstant, float restLength) : 
 			other(other), springConstant(springConstant), restLength(restLength) {}
         virtual void UpdateForce(Particle3D* particle, float deltaTime);
         

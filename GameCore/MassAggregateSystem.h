@@ -7,7 +7,7 @@
 #include "../Physics/Particles/Cables/ParticleOverlapContact.h"
 #include "../Physics/Particles/Cables/ParticleGroundContact.h"
 #include "../Physics/Particles/SpringLikeForces/ParticleAnchoredSpring.h"
-#include "../Physics/Particles/SpringLikeForces/ParticleBungee.h"
+#include "../Physics/Particles/Cables/ParticleCable.h"
 
 namespace gamecore
 {
@@ -20,7 +20,7 @@ namespace gamecore
 		~MassAggregateSystem();
 
 		void AttachParticleToAnchoredSpring(Particle3D* particle, Vector3D* anchor, float springConstant, float restLength);
-		void AttachParticleToBungee(Particle3D* particle, Vector3D* anchor, float springConstant, float restLength);
+		void AttachParticleToAnchoredCable(Particle3D* particle, Vector3D* anchor, float maxLength, float restitution);
 
 		void AddParticle(Particle3D* particle, bool hasGravity = true, bool hasOverlap = true);
 		void Update(float deltaTime);
