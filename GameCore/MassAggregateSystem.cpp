@@ -31,11 +31,11 @@ void MassAggregateSystem::Update(float deltaTime)
 void MassAggregateSystem::AddParticle(Particle3D* particle, bool hasGravity, bool hasOverlap)
 {
 	this->particleWorld->particleList.push_back(particle);
-	this->groundContact->AddParticle(particle);
 
 	if(hasOverlap)
 	{
 		this->overlapContact->AddParticle(particle);
+		this->groundContact->AddParticle(particle);
 	}
 
 	if(hasGravity)
@@ -56,6 +56,8 @@ void MassAggregateSystem::AttachParticleToAnchoredCable(Particle3D* particle, Ve
 {
 	this->AddParticle(particle);
 	
-	ParticleCable* anchoredCable = new ParticleCable(maxLength, restitution);
+	ParticleAnchoredCable* anchoredCable = new ParticleAnchoredCable(maxLength, restitution, anchor);
+	anchoredCable->particles[0] = particle;
+
 	this->particleWorld->particleContactGeneratorList.push_back(anchoredCable);
 }

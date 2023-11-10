@@ -15,29 +15,30 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
     GameObjectManager::GetInstance()->AddObject(floor);
 
     AddCollidingParticles();
-    AddAnchoredParticle();
+    AttachParticleToAnchoredSpring();
+    AttachParticleToAnchoredCable();
 
 }
 
 void Game::AddCollidingParticles()
 {
-	ParticleObject* particle = new ParticleObject("Particle_1");
+	ParticleObject* particle = new ParticleObject("Bottom_Particle");
 
 	GameObjectManager::GetInstance()->AddObject(particle);
 	massAggregateSystem->AddParticle(particle->GetParticle());
 
     particle->SetRadius(10.0f);
-	particle->SetPosition(Vector3D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 0));
+	particle->SetPosition(Vector3D(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0));
 
-	particle = new ParticleObject("Particle_2");
+	particle = new ParticleObject("Top_Particle");
 	GameObjectManager::GetInstance()->AddObject(particle);
 	massAggregateSystem->AddParticle(particle->GetParticle());
 
     particle->SetRadius(10.0f);
-	particle->SetPosition(Vector3D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 100, 0));
+	particle->SetPosition(Vector3D(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f - 100.0f, 0));
 }
 
-void Game::AddAnchoredParticle()
+void Game::AttachParticleToAnchoredSpring()
 {
 	ParticleObject* particle = new ParticleObject("Anchored_Particle");
 	GameObjectManager::GetInstance()->AddObject(particle);
@@ -50,6 +51,23 @@ void Game::AddAnchoredParticle()
 	massAggregateSystem->AttachParticleToAnchoredSpring(particle->GetParticle(), this->vectors.back(), 0.5f, 75.0f);
 
 	VisibleLine* line = new VisibleLine("AnchorLine", particle->GetParticle()->GetPositionReference(), this->vectors.back());
+	GameObjectManager::GetInstance()->AddObject(line);
+}
+
+void Game::AttachParticleToAnchoredCable()
+{
+	Vector3D* point = new Vector3D(SCREEN_WIDTH / 4.0f, SCREEN_HEIGHT / 2.0f - 100.0f, 0);
+    this->vectors.push_back(point);
+
+	ParticleObject* particle = new ParticleObject("Cabled_Particle");
+	GameObjectManager::GetInstance()->AddObject(particle);
+
+	massAggregateSystem->AttachParticleToAnchoredCable(particle->GetParticle(), point, 100.0f, 0.5f);
+
+	particle->SetRadius(10.0f);
+	particle->SetPosition(Vector3D(SCREEN_WIDTH / 4.0f, SCREEN_HEIGHT / 2.0f, 0));
+
+	VisibleLine* line = new VisibleLine("CableLine", particle->GetParticle()->GetPositionReference(), this->vectors.back());
 	GameObjectManager::GetInstance()->AddObject(line);
 }
 

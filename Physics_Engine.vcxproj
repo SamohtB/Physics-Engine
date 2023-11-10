@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Physics\Particles\Cables\ParticleAnchoredCable.cpp" />
     <ClCompile Include="BaseClasses\Component.cpp" />
     <ClCompile Include="BaseClasses\GameObject.cpp" />
     <ClCompile Include="BaseClasses\Vector3D.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Entities\VisibleLine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Physics\Particles\Cables\ParticleAnchoredCable.h" />
     <ClInclude Include="BaseClasses\Component.h" />
     <ClInclude Include="BaseClasses\Enums\ComponentType.h" />
     <ClInclude Include="BaseClasses\GameObject.h" />

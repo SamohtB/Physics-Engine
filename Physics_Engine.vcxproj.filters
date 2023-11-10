@@ -108,6 +108,9 @@
     <ClCompile Include="Entities\VisibleLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Physics\Particles\Cables\ParticleAnchoredCable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Physics\Particles\Particle3D.h">
@@ -210,6 +213,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Entities\VisibleLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Particles\Cables\ParticleAnchoredCable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

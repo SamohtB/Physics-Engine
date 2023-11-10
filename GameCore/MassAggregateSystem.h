@@ -7,7 +7,7 @@
 #include "../Physics/Particles/Cables/ParticleOverlapContact.h"
 #include "../Physics/Particles/Cables/ParticleGroundContact.h"
 #include "../Physics/Particles/SpringLikeForces/ParticleAnchoredSpring.h"
-#include "../Physics/Particles/Cables/ParticleCable.h"
+#include "../Physics/Particles/Cables/ParticleAnchoredCable.h"
 
 namespace gamecore
 {
