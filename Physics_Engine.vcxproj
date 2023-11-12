@@ -110,13 +110,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Documents\School Stuff\DLSU Stuff\GDPHYSX\GDPHYSX_ASSIGNMENTS\Project1\Dependencies\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\SFML-2.5.1\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Documents\School Stuff\DLSU Stuff\GDPHYSX\GDPHYSX_ASSIGNMENTS\Project1\Dependencies\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -127,7 +127,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Documents\School Stuff\DLSU Stuff\GDPHYSX\GDPHYSX_ASSIGNMENTS\Project1\Dependencies\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,7 +135,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>sfml-graphics.lib;sfml-system.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\SFML-2.5.1\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Documents\School Stuff\DLSU Stuff\GDPHYSX\GDPHYSX_ASSIGNMENTS\Project1\Dependencies\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -165,6 +165,7 @@
     <ClCompile Include="Physics\Particles\Forces\ParticleForceRegistry.cpp" />
     <ClCompile Include="Physics\Particles\Forces\ParticleGravity.cpp" />
     <ClCompile Include="Physics\Particles\Particle3D.cpp" />
+    <ClCompile Include="Physics\Particles\SpringLikeForces\ParticleToParticleSpring.cpp" />
     <ClCompile Include="Physics\Particles\ParticleWorld.cpp" />
     <ClCompile Include="Physics\Particles\SpringLikeForces\ParticleAnchoredSpring.cpp" />
     <ClCompile Include="Physics\Particles\SpringLikeForces\ParticleBouyancy.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Physics\Particles\Forces\ParticleForceRegistry.h" />
     <ClInclude Include="Physics\Particles\Forces\ParticleGravity.h" />
     <ClInclude Include="Physics\Particles\Particle3D.h" />
+    <ClInclude Include="Physics\Particles\SpringLikeForces\ParticleToParticleSpring.h" />
     <ClInclude Include="Physics\Particles\ParticleWorld.h" />
     <ClInclude Include="Physics\Particles\SpringLikeForces\ParticleAnchoredSpring.h" />
     <ClInclude Include="Physics\Particles\SpringLikeForces\ParticleBouyancy.h" />

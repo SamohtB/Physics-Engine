@@ -29,7 +29,7 @@ unsigned ParticleRod::FillContact(ParticleContact* contact, unsigned limit)
 		contact->penetration = length - currentLength;
 	}
 
-	contact->restitution = 0;
+	contact->restitution = 0.0f;
 
 	return 1;
 }

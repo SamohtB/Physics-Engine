@@ -111,6 +111,9 @@
     <ClCompile Include="Physics\Particles\Cables\ParticleAnchoredCable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Physics\Particles\SpringLikeForces\ParticleToParticleSpring.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Physics\Particles\Particle3D.h">
@@ -216,6 +219,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Physics\Particles\Cables\ParticleAnchoredCable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Particles\SpringLikeForces\ParticleToParticleSpring.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

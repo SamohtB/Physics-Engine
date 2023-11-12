@@ -15,6 +15,8 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
     GameObjectManager::GetInstance()->AddObject(floor);
 
     AddCollidingParticles();
+    AttachParticleToParticleSpring();
+    AttachParticleToParticleRod();
     AttachParticleToAnchoredSpring();
     AttachParticleToAnchoredCable();
 
@@ -37,6 +39,51 @@ void Game::AddCollidingParticles()
     particle->SetRadius(10.0f);
 	particle->SetPosition(Vector3D(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f - 100.0f, 0));
 }
+
+void Game::AttachParticleToParticleSpring()
+{
+    ParticleObject* particle = new ParticleObject("TopSpring_Particle");
+
+    GameObjectManager::GetInstance()->AddObject(particle);
+    massAggregateSystem->AddParticle(particle->GetParticle());
+
+    particle->SetRadius(10.0f);
+    particle->SetPosition(Vector3D(SCREEN_WIDTH / 5.0f, SCREEN_HEIGHT / 5.0f, 0));
+
+    ParticleObject* particle2 = new ParticleObject("BottomSpring_Particle");
+    GameObjectManager::GetInstance()->AddObject(particle2);
+    massAggregateSystem->AddParticle(particle2->GetParticle());
+
+    particle2->SetRadius(10.0f);
+    particle2->SetPosition(Vector3D(SCREEN_WIDTH / 5.0f, SCREEN_HEIGHT / 5.0f - 100.0f, 0));
+
+    massAggregateSystem->AttachParticleToParticleSpring(particle->GetParticle(), particle2->GetParticle(), 0.5f, 75.f);
+    VisibleLine* line = new VisibleLine("SpringLine", particle->GetParticle()->GetPositionReference(), particle2->GetParticle()->GetPositionReference());
+    GameObjectManager::GetInstance()->AddObject(line);
+}
+
+void Game::AttachParticleToParticleRod()
+{
+    ParticleObject* particle = new ParticleObject("Right_Particle");
+
+    GameObjectManager::GetInstance()->AddObject(particle);
+    massAggregateSystem->AddParticle(particle->GetParticle());
+
+    particle->SetRadius(10.0f);
+    particle->SetPosition(Vector3D(SCREEN_WIDTH / 1.5f, SCREEN_HEIGHT / 5.0f, 0));
+
+    ParticleObject* particle2 = new ParticleObject("Left_Particle");
+    GameObjectManager::GetInstance()->AddObject(particle2);
+    massAggregateSystem->AddParticle(particle2->GetParticle());
+
+    particle2->SetRadius(10.0f);
+    particle2->SetPosition(Vector3D(SCREEN_WIDTH / 1.5f, SCREEN_HEIGHT / 5.0f - 100.0f, 0));
+
+    massAggregateSystem->AttachParticleToParticleRod(particle->GetParticle(), particle2->GetParticle(), 50.5f);
+    VisibleLine* line = new VisibleLine("SpringLine", particle->GetParticle()->GetPositionReference(), particle2->GetParticle()->GetPositionReference());
+    GameObjectManager::GetInstance()->AddObject(line);
+}
+
 
 void Game::AttachParticleToAnchoredSpring()
 {

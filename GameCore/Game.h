@@ -26,6 +26,8 @@ namespace gamecore
 	{
 	public:
 		void AddCollidingParticles();
+		void AttachParticleToParticleRod();
+		void AttachParticleToParticleSpring();
 		void AttachParticleToAnchoredSpring();
 		void AttachParticleToAnchoredCable();
 		Game();
