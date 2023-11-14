@@ -95,7 +95,7 @@ Vector3D Vector3D::Normalize()
         return Vector3D(normalizedX, normalizedY, normalizedZ);
     }
 
-    std::cerr << "Vector Magnitude is 0! Operation undefined!";
+    //::cerr << "Vector Magnitude is 0! Operation undefined!";
     return Vector3D(0.0f, 0.0f, 0.0f);
 }
 
