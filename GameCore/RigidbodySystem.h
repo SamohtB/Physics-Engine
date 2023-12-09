@@ -2,8 +2,8 @@
 #ifndef GAMECORE_RIGIDBODY_SYSTEM_H
 #define GAMECORE_RIGIDBODY_SYSTEM_H
 
+#include "../Entities/Box2D.h"
 #include "../Physics/PhysicsWorld.h"
-#include "../Physics/Rigidbodies/Rigidbody2D.h"
 #include "../Physics/Rigidbodies/RigidbodyGravity.h"
 #include "../Physics/Rigidbodies/NarrowPhase.h"
 #include "../Physics/Rigidbodies/RigidbodyContact.h"
@@ -14,6 +14,7 @@ namespace gamecore
 {
 	using namespace baseclass;
 	using namespace physics;
+	using namespace entity;
 
 	class RigidbodySystem
 	{
@@ -21,7 +22,7 @@ namespace gamecore
 		RigidbodySystem(Vector2D gravity = Vector2D(0, 980.0f), int maxContacts = 64, float restitution = 0.5f);
 		~RigidbodySystem();
 
-		void AddRigidbody(Rigidbody2D* rigidbody, bool hasGravity = true, bool hasOverlap = true);
+		void AddRigidbody(Box2D* box, bool hasGravity = true, bool hasOverlap = true);
 		void Update(float deltaTime);
 
 	private:
@@ -31,6 +32,7 @@ namespace gamecore
 		BoxFloorContactGenerator* floorContact;
 
 		CollisionFloor* floor;
+		std::vector<CollisionData*> dataList;
 	};
 
 }

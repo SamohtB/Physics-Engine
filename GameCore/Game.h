@@ -25,6 +25,7 @@ namespace gamecore
 	class Game
 	{
 	public:
+		Box2D* CreateBox(std::string name, Vector2D initialPosition, bool hasGravity = true, float width = 50.0f, float height = 50.0f, float mass = 15.0f);
 		Game();
 
 		void Run();
@@ -35,6 +36,7 @@ namespace gamecore
 	private:
 		sf::RenderWindow renderWindow;
 		RigidbodySystem* rigidbodySystem;
+		std::vector<Vector3D*> points;
 
 	};
 }

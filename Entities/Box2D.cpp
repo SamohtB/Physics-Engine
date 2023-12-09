@@ -14,6 +14,9 @@ Box2D::Box2D(std::string name, float width, float height, float mass) : GameObje
 	this->body.shape = &this->shape;
 	this->collision.halfSize = Vector2D(width / 2.0f, height / 2.0f);
 	this->collision.body = &(this->body);
+
+	/*this->body.SetDamping(0.99f);
+	this->body.angularDamping = 0.99f;*/
 }
 
 void Box2D::Initialize()
