@@ -10,17 +10,22 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
     Box2D* box_1 =  CreateBox("Box_1", Vector2D(SCREEN_WIDTH / 2.0f, 200.0f), false);
     Box2D* box_2 =  CreateBox("Box_2", Vector2D(SCREEN_WIDTH / 2.0f, 300.0f));
 
-    this->rigidbodySystem->AttachBoxToBox(
-        Vector2D(25.0f, 0.0f), 
-        box_2, 
-        Vector2D(0.0f, -25.0f), 
-        100.0f, 
-        0.8f);
 
-    VisibleLine2D* line = new VisibleLine2D("Spring Line", box_1->body.GetPositionReference(), box_2->body.GetPositionReference());
+    Vector2D localpointA = Vector2D(25.0f, 0.0f);
+    Vector2D localPointB = Vector2D(0.0f, -25.0f);
+
+    this->rigidbodySystem->AttachBoxToBox(
+        box_1,
+        localpointA, 
+        box_2, 
+        localPointB, 
+        70.0f, 
+        60.0f);
+
+    VisibleLine2D* line = new VisibleLine2D("Spring Line", box_1->body.GetPositionReference(), box_2->body.GetPositionReference(),
+        sf::Color::Blue);
 	GameObjectManager::GetInstance()->AddObject(line);
 
-    //box->body.AddForceOnPoint(Vector2D(25.0f, 0.0f), Vector2D(0, 50000.0f));
     AddFloor();
 }
 

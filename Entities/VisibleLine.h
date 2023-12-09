@@ -26,13 +26,14 @@ namespace entity
 	class VisibleLine2D :	public GameObject
 	{
 	public:
-		VisibleLine2D(std::string name, Vector2D* startPoint, Vector2D* endPoint);
+		VisibleLine2D(std::string name, Vector2D* startPoint, Vector2D* endPoint, sf::Color color = sf::Color::White);
 		void Initialize() override;
 		void Draw(sf::RenderWindow* window, sf::RenderStates renderStates) override;
 
 	private:
 		Vector2D* startPoint;
 		Vector2D* endPoint;
+		sf::Color color;
 	};
 }
 

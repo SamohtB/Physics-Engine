@@ -22,7 +22,7 @@ namespace gamecore
 		RigidbodySystem(Vector2D gravity = Vector2D(0, 980.0f), int maxContacts = 64, float restitution = 0.5f);
 		~RigidbodySystem();
 
-		void AttachBoxToBox(Vector2D localConnection, Box2D* box, Vector2D otherLocalConnection, float springConstant, float restitution);
+		void AttachBoxToBox(Box2D* boxA, Vector2D localConnection, Box2D* boxB, Vector2D otherLocalConnection, float springConstant, float restLength);
 		void AddRigidbody(Box2D* box, bool hasGravity = true, bool hasOverlap = true);
 		void Update(float deltaTime);
 
