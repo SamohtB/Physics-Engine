@@ -39,6 +39,9 @@ namespace gamecore
 		RigidbodySystem* rigidbodySystem;
 		std::vector<Vector2D*> points;
 
+		Box2D* spring_box_1;
+		Box2D* spring_box_2;
+
 	};
 }
 

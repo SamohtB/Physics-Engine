@@ -26,7 +26,6 @@ VisibleLine2D::VisibleLine2D(std::string name, Vector2D* startPoint, Vector2D* e
 	this->endPoint = endPoint;
 	this->color = color;
 }
-
 void VisibleLine2D::Initialize() {}
 
 void VisibleLine2D::Draw(sf::RenderWindow* window, sf::RenderStates renderStates)
