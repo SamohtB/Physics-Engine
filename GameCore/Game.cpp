@@ -5,6 +5,13 @@ using namespace gamecore;
 Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics Engine by Banatin and Guzman", sf::Style::Titlebar | sf::Style::Close)
 {
 	this->renderWindow.setFramerateLimit(FRAME_RATE_LIMIT);
+    this->rigidbodySystem = new RigidbodySystem();
+
+    Box2D* box = new Box2D("Test_Box", 100.0f, 100.0f, 15.0f);
+    GameObjectManager::GetInstance()->AddObject(box);
+
+    this->rigidbodySystem->AddRigidbody(&box->body);
+    box->SetPosition(Vector3D(SCREEN_WIDTH / 2.0f, 200.0f, 0.0f));
 }
 
 void Game::Run()
@@ -49,6 +56,7 @@ void Game::ProcessInput()
 
 void Game::Update(sf::Time deltaTime)
 {
+    this->rigidbodySystem->Update(deltaTime.asSeconds());
     GameObjectManager::GetInstance()->Update(deltaTime);
     GameObjectManager::GetInstance()->PhysicsUpdate(deltaTime);
 }

@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseClasses\Vector2D.cpp" />
+    <ClCompile Include="Entities\Box2D.cpp" />
     <ClCompile Include="Physics\Particles\Cables\ParticleAnchoredCable.cpp" />
     <ClCompile Include="BaseClasses\Component.cpp" />
     <ClCompile Include="BaseClasses\GameObject.cpp" />
@@ -182,9 +183,11 @@
     <ClCompile Include="Physics\Rigidbodies\RigidbodyGravity.cpp" />
     <ClCompile Include="Physics\Rigidbodies\RigidbodySpring.cpp" />
     <ClCompile Include="Physics\Rigidbodies\Shape2D.cpp" />
+    <ClCompile Include="GameCore\RigidbodySystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseClasses\Vector2D.h" />
+    <ClInclude Include="Entities\Box2D.h" />
     <ClInclude Include="Physics\Particles\Cables\ParticleAnchoredCable.h" />
     <ClInclude Include="BaseClasses\Component.h" />
     <ClInclude Include="BaseClasses\Enums\ComponentType.h" />
@@ -230,6 +233,7 @@
     <ClInclude Include="Physics\Rigidbodies\RigidbodyGravity.h" />
     <ClInclude Include="Physics\Rigidbodies\RigidbodySpring.h" />
     <ClInclude Include="Physics\Rigidbodies\Shape2D.h" />
+    <ClInclude Include="GameCore\RigidbodySystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

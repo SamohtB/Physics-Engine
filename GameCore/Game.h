@@ -10,10 +10,10 @@
 
 #include "Managers/GameObjectManager.h"
 
-#include "../Entities/ParticleObject.h"
+#include "../Entities/Box2D.h"
 #include "../Entities/VisibleLine.h"
 
-#include "MassAggregateSystem.h"
+#include "RigidbodySystem.h"
 
 namespace gamecore
 {
@@ -34,6 +34,8 @@ namespace gamecore
 
 	private:
 		sf::RenderWindow renderWindow;
+		RigidbodySystem* rigidbodySystem;
+
 	};
 }
 
