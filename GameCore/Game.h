@@ -25,11 +25,6 @@ namespace gamecore
 	class Game
 	{
 	public:
-		void AddCollidingParticles();
-		void AttachParticleToParticleRod();
-		void AttachParticleToParticleSpring();
-		void AttachParticleToAnchoredSpring();
-		void AttachParticleToAnchoredCable();
 		Game();
 
 		void Run();
@@ -39,8 +34,6 @@ namespace gamecore
 
 	private:
 		sf::RenderWindow renderWindow;
-		MassAggregateSystem* massAggregateSystem;
-		std::vector<Vector3D*> vectors;
 	};
 }
 
