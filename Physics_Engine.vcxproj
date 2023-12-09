@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseClasses\Vector2D.cpp" />
     <ClCompile Include="Physics\Particles\Cables\ParticleAnchoredCable.cpp" />
     <ClCompile Include="BaseClasses\Component.cpp" />
     <ClCompile Include="BaseClasses\GameObject.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="Physics\Particles\Forces\ParticleDrag.cpp" />
     <ClCompile Include="Physics\Particles\Forces\ParticleForceRegistry.cpp" />
     <ClCompile Include="Physics\Particles\Forces\ParticleGravity.cpp" />
+    <ClCompile Include="Physics\Particles\Particle2D.cpp" />
     <ClCompile Include="Physics\Particles\Particle3D.cpp" />
     <ClCompile Include="Physics\Particles\SpringLikeForces\ParticleToParticleSpring.cpp" />
     <ClCompile Include="Physics\Particles\ParticleWorld.cpp" />
@@ -172,8 +174,17 @@
     <ClCompile Include="Physics\Particles\SpringLikeForces\ParticleBungee.cpp" />
     <ClCompile Include="Physics\Particles\SpringLikeForces\ParticleSpring.cpp" />
     <ClCompile Include="Entities\VisibleLine.cpp" />
+    <ClCompile Include="Physics\PhysicsWorld.cpp" />
+    <ClCompile Include="Physics\Rigidbodies\NarrowPhase.cpp" />
+    <ClCompile Include="Physics\Rigidbodies\Rigidbody2D.cpp" />
+    <ClCompile Include="Physics\Rigidbodies\RigidbodyContact.cpp" />
+    <ClCompile Include="Physics\Rigidbodies\RigidbodyForceGenerator.cpp" />
+    <ClCompile Include="Physics\Rigidbodies\RigidbodyGravity.cpp" />
+    <ClCompile Include="Physics\Rigidbodies\RigidbodySpring.cpp" />
+    <ClCompile Include="Physics\Rigidbodies\Shape2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseClasses\Vector2D.h" />
     <ClInclude Include="Physics\Particles\Cables\ParticleAnchoredCable.h" />
     <ClInclude Include="BaseClasses\Component.h" />
     <ClInclude Include="BaseClasses\Enums\ComponentType.h" />
@@ -202,6 +213,7 @@
     <ClInclude Include="Physics\Particles\Forces\ParticleDrag.h" />
     <ClInclude Include="Physics\Particles\Forces\ParticleForceRegistry.h" />
     <ClInclude Include="Physics\Particles\Forces\ParticleGravity.h" />
+    <ClInclude Include="Physics\Particles\Particle2D.h" />
     <ClInclude Include="Physics\Particles\Particle3D.h" />
     <ClInclude Include="Physics\Particles\SpringLikeForces\ParticleToParticleSpring.h" />
     <ClInclude Include="Physics\Particles\ParticleWorld.h" />
@@ -210,6 +222,14 @@
     <ClInclude Include="Physics\Particles\SpringLikeForces\ParticleBungee.h" />
     <ClInclude Include="Physics\Particles\SpringLikeForces\ParticleSpring.h" />
     <ClInclude Include="Entities\VisibleLine.h" />
+    <ClInclude Include="Physics\PhysicsWorld.h" />
+    <ClInclude Include="Physics\Rigidbodies\NarrowPhase.h" />
+    <ClInclude Include="Physics\Rigidbodies\Rigidbody2D.h" />
+    <ClInclude Include="Physics\Rigidbodies\RigidbodyContact.h" />
+    <ClInclude Include="Physics\Rigidbodies\RigidbodyForceGenerator.h" />
+    <ClInclude Include="Physics\Rigidbodies\RigidbodyGravity.h" />
+    <ClInclude Include="Physics\Rigidbodies\RigidbodySpring.h" />
+    <ClInclude Include="Physics\Rigidbodies\Shape2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
