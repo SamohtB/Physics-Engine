@@ -40,6 +40,14 @@ void Box2D::PhysicsUpdate(sf::Time deltaTime)
 	this->body.transformMatrix = transformMatrix;
 }
 
+
+Vector2D Box2D::GetPosition2D()
+{
+	sf::Vector2f position2D = this->sprite->getPosition();
+
+    return Vector2D(position2D.x, position2D.y);
+}
+
 void Box2D::SetPosition(Vector3D position)
 {
 	sf::Vector2f position2D = sf::Vector2f(position.x, position.y);

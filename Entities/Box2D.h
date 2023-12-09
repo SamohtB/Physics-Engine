@@ -22,6 +22,7 @@ namespace entity
 		CollisionBox collision;
 
 		Box2D(std::string name, float width, float height, float mass);
+		Vector2D GetPosition2D();
 		void SetPosition(Vector3D position) override;
 		void Initialize() override;
 		void PhysicsUpdate(sf::Time deltaTime) override;

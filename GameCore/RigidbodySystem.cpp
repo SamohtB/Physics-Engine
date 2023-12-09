@@ -47,5 +47,18 @@ void RigidbodySystem::AddRigidbody(Box2D* box, bool hasGravity, bool hasOverlap)
 	}
 }
 
+void RigidbodySystem::AttachBoxToBox(Vector2D localConnection, Box2D* box, Vector2D otherLocalConnection, float springConstant, float restitution)
+{
+	RigidbodySpring* spring = new RigidbodySpring(
+		localConnection,
+		&box->body,
+		otherLocalConnection,
+		springConstant, 
+		restitution);
+
+	this->physicsWorld->registry.Add(&box->body, spring);
+}
+
+
 
 

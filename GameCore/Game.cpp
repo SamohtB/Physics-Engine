@@ -7,21 +7,21 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
 	this->renderWindow.setFramerateLimit(FRAME_RATE_LIMIT);
     this->rigidbodySystem = new RigidbodySystem();
 
-    Box2D* box = CreateBox("Box_1", Vector2D(SCREEN_WIDTH / 2.0f, 200.0f), false);
-    //CreateBox("Box_2", Vector2D(SCREEN_WIDTH / 2.0f, 300.0f), false);
+    Box2D* box_1 =  CreateBox("Box_1", Vector2D(SCREEN_WIDTH / 2.0f, 200.0f), false);
+    Box2D* box_2 =  CreateBox("Box_2", Vector2D(SCREEN_WIDTH / 2.0f, 300.0f));
 
-    box->body.AddForceOnPoint(Vector2D(25.0f, 0.0f), Vector2D(0, 50000.0f));
-    box->body.SetDamping(0.99f);
-    box->body.angularDamping = 1.0f;
+    this->rigidbodySystem->AttachBoxToBox(
+        Vector2D(25.0f, 0.0f), 
+        box_2, 
+        Vector2D(0.0f, -25.0f), 
+        100.0f, 
+        0.8f);
 
-    Vector3D* point = new Vector3D(0, 600.0f, 0);
-    this->points.push_back(point);
-    point = new Vector3D(SCREEN_WIDTH, 600.0f, 0);
-    this->points.push_back(point);
+    VisibleLine2D* line = new VisibleLine2D("Spring Line", box_1->body.GetPositionReference(), box_2->body.GetPositionReference());
+	GameObjectManager::GetInstance()->AddObject(line);
 
-    VisibleLine* line = new VisibleLine("Floor Line", points[0], points[1]);
-    GameObjectManager::GetInstance()->AddObject(line);
-
+    //box->body.AddForceOnPoint(Vector2D(25.0f, 0.0f), Vector2D(0, 50000.0f));
+    AddFloor();
 }
 
 Box2D* Game::CreateBox(std::string name, Vector2D initialPosition, bool hasGravity, float width, float height, float mass)
@@ -30,9 +30,23 @@ Box2D* Game::CreateBox(std::string name, Vector2D initialPosition, bool hasGravi
 	GameObjectManager::GetInstance()->AddObject(box);
 
 	this->rigidbodySystem->AddRigidbody(box, hasGravity);
+
 	box->SetPosition(Vector3D(initialPosition.x, initialPosition.y, 0.0f));
+    box->body.SetDamping(0.99f);
+    box->body.angularDamping = 1.0f;
 
     return box;
+}
+
+void Game::AddFloor()
+{
+	Vector2D* pointA = new Vector2D(0, 600.0f);
+	this->points.push_back(pointA);
+	Vector2D* pointB = new Vector2D(SCREEN_WIDTH, 600.0f);
+	this->points.push_back(pointB);
+
+	VisibleLine2D* line = new VisibleLine2D("Floor Line", pointA, pointB);
+	GameObjectManager::GetInstance()->AddObject(line);
 }
 
 void Game::Run()
