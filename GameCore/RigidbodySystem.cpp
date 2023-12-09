@@ -6,7 +6,7 @@ RigidbodySystem::RigidbodySystem(Vector2D gravity, int maxContacts, float restit
 {
 	this->physicsWorld = new PhysicsWorld(maxContacts);
 	this->gravity = new RigidbodyGravity(gravity);
-	this->overlapContact = new BoxBoxContactGenerator(0.5f);
+	this->overlapContact = new BoxBoxContactGenerator(0.8f);
 
 	this->floorOffset = 500.0f;
 	CollisionFloor floor = CollisionFloor();

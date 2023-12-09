@@ -5,17 +5,18 @@ using namespace gamecore;
 Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics Engine by Banatin and Guzman", sf::Style::Titlebar | sf::Style::Close)
 {
 	this->renderWindow.setFramerateLimit(FRAME_RATE_LIMIT);
-    this->rigidbodySystem = new RigidbodySystem(Vector2D(0, 98.0f));
+    this->rigidbodySystem = new RigidbodySystem(Vector2D(0, 98.0f), 128, 0.8f);
 
     spring_box_1 = nullptr;
     spring_box_2 = nullptr;
 
     AddBoxesAttachedBySpring();
-    CreateBox("Box_Test_1", Vector2D(SCREEN_WIDTH / 4.0f, 200.0f));
-    CreateBox("Box_Test_2", Vector2D(SCREEN_WIDTH / 4.0f, 300.0f));
-    CreateBox("Box_Test_3", Vector2D(SCREEN_WIDTH / 4.0f, 400.0f));
-
-    Box2D* box = CreateBox("Box_Test_4", Vector2D(SCREEN_WIDTH / 4.0f * 3.0f, 150.0f));
+    //CreateBox("Box_Test_1", Vector2D(130, 50.0f));
+    //CreateBox("Box_Test_2", Vector2D(130, 200.0f));
+    //CreateBox("Box_Test_3", Vector2D(115, 225.0f));
+    
+    CreateBox("Box_Test_3", Vector2D(725, 200.0f));
+    Box2D* box = CreateBox("Box_Test_4", Vector2D(715, 50.0f));
     box->body.AddForceOnPoint(Vector2D(25.0f, 0.0f), Vector2D(0.0f, 50000.0f));
 
     this->rigidbodySystem->Initialize();

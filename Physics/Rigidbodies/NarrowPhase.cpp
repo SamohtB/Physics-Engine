@@ -21,7 +21,7 @@ static inline std::tuple<float,float> ProjectCorners(Vector2D corner[4], Vector2
 		{
 			min = projection;
 		}
-		if(projection < max)
+		if(projection > max)
 		{
 			max = projection;
 		}
@@ -101,6 +101,24 @@ bool IntersectionTests::BoxAndBox(CollisionBox& one, CollisionBox& two)
 	{
 		Vector2D va = oneCorners[i];
 		Vector2D vb = oneCorners[(i+1) % 4];
+
+		Vector2D axis = vb - va;
+		axis = axis.Normalize();
+
+		float minA, minB, maxA, maxB;
+		std::tie(minA, maxA) = ProjectCorners(oneCorners, axis);
+		std::tie(minB, maxB) = ProjectCorners(twoCorners, axis);
+
+		if(minA >= maxB || minB >= maxA)
+		{
+			return false;
+		}
+	}
+
+	for(int i = 0; i < 4; i++)
+	{
+		Vector2D va = twoCorners[i];
+		Vector2D vb = twoCorners[(i+1) % 4];
 
 		Vector2D axis = vb - va;
 		axis = axis.Normalize();
@@ -226,7 +244,7 @@ unsigned CollisionDetector::BoxAndBox(CollisionBox& one, CollisionBox& two, Coll
 				contact[0].penetration = magnitude;
 				isTwo = false;
 			}
-			else if(abs(magnitude - minDistance) < 0.00001f)
+			else if(abs(magnitude - minDistance) < 0.01f)
 			{
 				contact[1].contactPoint = contactPoint;
 				contact[1].body[0] = one.body;
@@ -267,7 +285,7 @@ unsigned CollisionDetector::BoxAndBox(CollisionBox& one, CollisionBox& two, Coll
 				contact[0].penetration = magnitude;
 				isTwo = false;
 			}
-			else if(abs(magnitude - minDistance) < 0.00001f)
+			else if(abs(magnitude - minDistance) < 0.01f)
 			{
 				contact[1].contactPoint = contactPoint;
 				contact[1].body[0] = two.body;
