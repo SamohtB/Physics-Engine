@@ -11,12 +11,12 @@ Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics
     spring_box_2 = nullptr;
 
     AddBoxesAttachedBySpring();
-    //CreateBox("Box_Test_1", Vector2D(130, 50.0f));
-    //CreateBox("Box_Test_2", Vector2D(130, 200.0f));
-    //CreateBox("Box_Test_3", Vector2D(115, 225.0f));
+    //CreateBox("Box_Test_1", Vector2D(230, 50.0f));
+    //CreateBox("Box_Test_2", Vector2D(230, 200.0f));
+    //CreateBox("Box_Test_3", Vector2D(215, 350.0f));
     
-    CreateBox("Box_Test_3", Vector2D(725, 200.0f));
-    Box2D* box = CreateBox("Box_Test_4", Vector2D(715, 50.0f));
+    CreateBox("Box_Test_4", Vector2D(725, 200.0f));
+    Box2D* box = CreateBox("Box_Test_5", Vector2D(715, 50.0f));
     box->body.AddForceOnPoint(Vector2D(25.0f, 0.0f), Vector2D(0.0f, 50000.0f));
 
     this->rigidbodySystem->Initialize();
@@ -35,7 +35,7 @@ Box2D* Game::CreateBox(std::string name, Vector2D initialPosition, bool hasGravi
 
 void Game::AddBoxesAttachedBySpring()
 {
-	spring_box_1 = CreateBox("Box_1", Vector2D(SCREEN_WIDTH / 2.0f, 200.0f), true, 50.0f, 50.0f, 10.0f);
+	spring_box_1 = CreateBox("Box_1", Vector2D(SCREEN_WIDTH / 2.0f, 100.0f), true, 50.0f, 50.0f, 10.0f);
 	spring_box_2 = CreateBox("Box_2", Vector2D(SCREEN_WIDTH / 2.0f, 300.0f), true, 50.0f, 50.0f, 10.0f);
 
 	Vector2D localPointA = Vector2D(12.5f, 0.0f);

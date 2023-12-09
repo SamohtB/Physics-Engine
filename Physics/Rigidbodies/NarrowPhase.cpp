@@ -50,7 +50,7 @@ static inline std::tuple<float, Vector2D> PointSegmentDistance(Vector2D point, V
 	}
 	else
 	{
-		contactPoint = segmentA + segmentB * d;
+		contactPoint = (segmentA + segmentB) * d;
 	}
 
 	float magnitude = (point - contactPoint).GetMagnitude();
