@@ -5,23 +5,20 @@ using namespace gamecore;
 Game::Game() : renderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Physics Engine by Banatin and Guzman", sf::Style::Titlebar | sf::Style::Close)
 {
 	this->renderWindow.setFramerateLimit(FRAME_RATE_LIMIT);
-    this->rigidbodySystem = new RigidbodySystem();
+    this->rigidbodySystem = new RigidbodySystem(Vector2D(0, 98.0f));
 
-    spring_box_1 =  CreateBox("Box_1", Vector2D(SCREEN_WIDTH / 2.0f, 200.0f), false);
-    spring_box_2 =  CreateBox("Box_2", Vector2D(SCREEN_WIDTH / 2.0f, 300.0f));
+    spring_box_1 = nullptr;
+    spring_box_2 = nullptr;
 
-    Vector2D localPointA = Vector2D(25.0f, 0.0f);
-    Vector2D localPointB = Vector2D(0.0f, -25.0f);
+    AddBoxesAttachedBySpring();
+    CreateBox("Box_Test_1", Vector2D(SCREEN_WIDTH / 4.0f, 200.0f));
+    CreateBox("Box_Test_2", Vector2D(SCREEN_WIDTH / 4.0f, 300.0f));
+    CreateBox("Box_Test_3", Vector2D(SCREEN_WIDTH / 4.0f, 400.0f));
 
-    this->rigidbodySystem->AttachBoxToBox(
-        spring_box_1,
-        localPointA, 
-        spring_box_2, 
-        localPointB, 
-        70.0f, 
-        60.0f);
-    
-    AddFloor();
+    Box2D* box = CreateBox("Box_Test_4", Vector2D(SCREEN_WIDTH / 4.0f * 3.0f, 150.0f));
+    box->body.AddForceOnPoint(Vector2D(25.0f, 0.0f), Vector2D(0.0f, 50000.0f));
+
+    this->rigidbodySystem->Initialize();
 }
 
 Box2D* Game::CreateBox(std::string name, Vector2D initialPosition, bool hasGravity, float width, float height, float mass)
@@ -29,24 +26,27 @@ Box2D* Game::CreateBox(std::string name, Vector2D initialPosition, bool hasGravi
 	Box2D* box = new Box2D(name, width, height, mass);
 	GameObjectManager::GetInstance()->AddObject(box);
 
-	this->rigidbodySystem->AddRigidbody(box, hasGravity);
-
 	box->SetPosition(Vector3D(initialPosition.x, initialPosition.y, 0.0f));
-    box->body.SetDamping(0.99f);
-    box->body.angularDamping = 1.0f;
+	this->rigidbodySystem->AddRigidbody(box, hasGravity);
 
     return box;
 }
 
-void Game::AddFloor()
+void Game::AddBoxesAttachedBySpring()
 {
-	Vector2D* pointA = new Vector2D(0, 600.0f);
-	this->points.push_back(pointA);
-	Vector2D* pointB = new Vector2D(SCREEN_WIDTH, 600.0f);
-	this->points.push_back(pointB);
+	spring_box_1 = CreateBox("Box_1", Vector2D(SCREEN_WIDTH / 2.0f, 200.0f), true, 50.0f, 50.0f, 10.0f);
+	spring_box_2 = CreateBox("Box_2", Vector2D(SCREEN_WIDTH / 2.0f, 300.0f), true, 50.0f, 50.0f, 10.0f);
 
-	VisibleLine2D* line = new VisibleLine2D("Floor Line", pointA, pointB);
-	GameObjectManager::GetInstance()->AddObject(line);
+	Vector2D localPointA = Vector2D(12.5f, 0.0f);
+	Vector2D localPointB = Vector2D(0.0f, 25.0f);
+
+	this->rigidbodySystem->AttachBoxToBox(
+		spring_box_1,
+		localPointA, 
+		spring_box_2, 
+		localPointB, 
+		70.0f, 
+		60.0f);
 }
 
 void Game::Run()
@@ -100,14 +100,29 @@ void Game::Render()
 {
     this->renderWindow.clear();
 
-    sf::Vertex springLine[] =  {
-    	sf::Vertex(spring_box_1->body.transformMatrix.transformPoint(sf::Vector2f(25.0f, 0.0f)), sf::Color::Red), 
-		sf::Vertex(spring_box_2->body.transformMatrix.transformPoint(sf::Vector2f(0.0f, -25.0f)), sf::Color::Red)
-    };
-
-    renderWindow.draw(springLine, 2, sf::Lines);
-
+    DrawFloor();
     GameObjectManager::GetInstance()->Draw(&this->renderWindow);
+    DrawSpringLine();
 
     this->renderWindow.display();
+}
+
+void Game::DrawSpringLine()
+{
+	sf::Vertex springLine[] =  {
+		sf::Vertex(spring_box_1->body.transformMatrix.transformPoint(sf::Vector2f(25.0f, 0.0f)), sf::Color::Red), 
+		sf::Vertex(spring_box_2->body.transformMatrix.transformPoint(sf::Vector2f(0.0f, -25.0f)), sf::Color::Red)
+	};
+
+	renderWindow.draw(springLine, 2, sf::Lines);
+}
+
+void Game::DrawFloor()
+{
+	sf::Vertex springLine[] =  {
+		sf::Vertex(sf::Vector2f(0.0f, 500.0f), sf::Color::White), 
+		sf::Vertex(sf::Vector2f(SCREEN_WIDTH, 500.0f), sf::Color::White)
+	};
+
+	renderWindow.draw(springLine, 2, sf::Lines);
 }

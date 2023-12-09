@@ -25,19 +25,20 @@ namespace gamecore
 	class Game
 	{
 	public:
-		Box2D* CreateBox(std::string name, Vector2D initialPosition, bool hasGravity = true, float width = 50.0f, float height = 50.0f, float mass = 15.0f);
-		void AddFloor();
+		Box2D* CreateBox(std::string name, Vector2D initialPosition, bool hasGravity = true, float width = 50.0f, float height = 50.0f, float mass = 10.0f);
+		void AddBoxesAttachedBySpring();
 		Game();
 
 		void Run();
 		void ProcessInput();
 		void Update(sf::Time deltaTime);
+		void DrawFloor();
+		void DrawSpringLine();
 		void Render();
 
 	private:
 		sf::RenderWindow renderWindow;
 		RigidbodySystem* rigidbodySystem;
-		std::vector<Vector2D*> points;
 
 		Box2D* spring_box_1;
 		Box2D* spring_box_2;

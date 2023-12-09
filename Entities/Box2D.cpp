@@ -15,8 +15,8 @@ Box2D::Box2D(std::string name, float width, float height, float mass) : GameObje
 	this->collision.halfSize = Vector2D(width / 2.0f, height / 2.0f);
 	this->collision.body = &(this->body);
 
-	/*this->body.SetDamping(0.99f);
-	this->body.angularDamping = 0.99f;*/
+	this->body.SetDamping(0.99f);
+	this->body.angularDamping = 1.0f;
 }
 
 void Box2D::Initialize()
@@ -53,6 +53,7 @@ void Box2D::SetPosition(Vector3D position)
 	sf::Vector2f position2D = sf::Vector2f(position.x, position.y);
 	this->sprite->setPosition(position2D);
 	this->body.SetPosition(Vector2D(position.x, position.y));
+	this->sfShape.setPosition(position2D);
 }
 
 

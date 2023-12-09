@@ -6,15 +6,15 @@ RigidbodySystem::RigidbodySystem(Vector2D gravity, int maxContacts, float restit
 {
 	this->physicsWorld = new PhysicsWorld(maxContacts);
 	this->gravity = new RigidbodyGravity(gravity);
-	this->overlapContact = new BoxBoxContactGenerator(restitution);
+	this->overlapContact = new BoxBoxContactGenerator(0.5f);
 
-	floor = new CollisionFloor();
-	floor->direction = Vector2D(0, -1);
-	floor->offset = -600.0f;
+	this->floorOffset = 500.0f;
+	CollisionFloor floor = CollisionFloor();
+	floor.direction = Vector2D(0, -1);
+	floor.direction = floor.direction.Normalize();
+	floor.offset = -this->floorOffset;
 
-	this->floorContact = new BoxFloorContactGenerator(*floor, 0.8f);
-	this->physicsWorld->contactGeneratorList.push_back(overlapContact);
-	this->physicsWorld->contactGeneratorList.push_back(floorContact);
+	this->floorContact = new BoxFloorContactGenerator(floor, 0.8f);
 }
 
 RigidbodySystem::~RigidbodySystem()
@@ -22,9 +22,15 @@ RigidbodySystem::~RigidbodySystem()
 	delete this->physicsWorld;
 	delete this->gravity;
 	delete this->overlapContact;
-	delete this->floor;
 	delete this->floorContact;
 }
+
+void RigidbodySystem::Initialize()
+{
+	this->physicsWorld->contactGeneratorList.push_back(overlapContact);
+	this->physicsWorld->contactGeneratorList.push_back(floorContact);
+}
+
 
 void RigidbodySystem::Update(float deltaTime)
 {
@@ -35,16 +41,10 @@ void RigidbodySystem::AddRigidbody(Box2D* box, bool hasGravity, bool hasOverlap)
 {
 	this->physicsWorld->rigidbodyList.push_back(&box->body);
 
-	if(hasGravity)
-	{
-		this->physicsWorld->registry.Add(&box->body, this->gravity);
-	}
+	this->physicsWorld->registry.Add(&box->body, this->gravity);
 
-	if(hasOverlap)
-	{
-		//this->floorContact->collisionList.push_back(&box->collision);
-		//this->overlapContact->collisionList.push_back(&box->collision);
-	}
+	this->floorContact->collisionList.push_back(&box->collision);
+	this->overlapContact->collisionList.push_back(&box->collision);
 }
 
 void RigidbodySystem::AttachBoxToBox(Box2D* boxA, Vector2D localConnection, Box2D* boxB, Vector2D otherLocalConnection, float springConstant, float restLength)
@@ -53,7 +53,7 @@ void RigidbodySystem::AttachBoxToBox(Box2D* boxA, Vector2D localConnection, Box2
 		localConnection,
 		&(boxB->body),
 		otherLocalConnection,
-		springConstant, 
+		springConstant,		
 		restLength);
 
 	this->physicsWorld->registry.Add(&boxA->body, spring);

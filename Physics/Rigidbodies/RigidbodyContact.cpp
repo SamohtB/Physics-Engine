@@ -29,7 +29,7 @@ void RigidbodyContact::CalculateInternals(float deltaTime)
 	}
 
 	float contactSeparatingMagnitude = relativeVelocity.Dot(contactNormal);
-	float newSeparatingMagnitude = this->restitution * contactSeparatingMagnitude;
+	float newSeparatingMagnitude = -this->restitution * contactSeparatingMagnitude;
 	float deltaVelocity =  newSeparatingMagnitude - contactSeparatingMagnitude;
 
 	impulseMagnitude = deltaVelocity / totalInverseMass;

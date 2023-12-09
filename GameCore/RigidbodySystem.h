@@ -25,15 +25,15 @@ namespace gamecore
 		void AttachBoxToBox(Box2D* boxA, Vector2D localConnection, Box2D* boxB, Vector2D otherLocalConnection, float springConstant, float restLength);
 		void AddRigidbody(Box2D* box, bool hasGravity = true, bool hasOverlap = true);
 		void Update(float deltaTime);
+		void Initialize();
+
+		float floorOffset;
 
 	private:
 		PhysicsWorld* physicsWorld;
 		RigidbodyGravity* gravity;
 		BoxBoxContactGenerator* overlapContact;
 		BoxFloorContactGenerator* floorContact;
-
-		CollisionFloor* floor;
-		std::vector<CollisionData*> dataList;
 	};
 
 }
